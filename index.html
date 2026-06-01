@@ -16,56 +16,59 @@
     body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
       background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 
-    /* NAV */
     nav{background:var(--bg2);border-bottom:1px solid var(--border);
       padding:0 2rem;display:flex;align-items:center;justify-content:space-between;
       height:56px;position:sticky;top:0;z-index:200}
     .nav-brand{display:flex;align-items:center;gap:10px;font-weight:600;font-size:.95rem}
-    .nav-badge{background:var(--accent);color:#fff;font-size:.7rem;
-      padding:2px 8px;border-radius:12px;font-weight:700}
+    .nav-badge{background:var(--accent);color:#fff;font-size:.7rem;padding:2px 8px;border-radius:12px;font-weight:700}
     .nav-right{display:flex;align-items:center;gap:1rem;font-size:.82rem;color:var(--muted)}
     #last-updated{color:var(--green)}
 
-    /* TABS */
     .tabs{background:var(--bg2);border-bottom:1px solid var(--border);
-      display:flex;padding:0 2rem;gap:0;overflow-x:auto}
+      display:flex;padding:0 2rem;overflow-x:auto}
     .tab{padding:12px 18px;cursor:pointer;font-size:.84rem;color:var(--muted);
       border-bottom:2px solid transparent;transition:all .15s;white-space:nowrap}
     .tab:hover{color:var(--text)}
     .tab.active{color:var(--accent);border-bottom-color:var(--accent)}
 
-    /* LAYOUT */
     main{max-width:1400px;margin:0 auto;padding:2rem}
     .section{display:none}.section.active{display:block}
 
-    /* KPI */
-    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
-      gap:1rem;margin-bottom:2rem}
-    .kpi-card{background:var(--bg2);border:1px solid var(--border);
-      border-radius:8px;padding:1.2rem 1.4rem}
-    .kpi-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
-      color:var(--muted);margin-bottom:6px}
+    /* KPI ─────────────────────────────────────────────────── */
+    .kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1rem;margin-bottom:1.5rem}
+    .kpi-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.2rem 1.4rem}
+    .kpi-label{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin-bottom:6px}
     .kpi-value{font-size:1.9rem;font-weight:700;line-height:1;margin-bottom:4px}
     .kpi-sub{font-size:.75rem;color:var(--muted)}
+    .kpi-trend{font-size:.73rem;margin-top:5px;font-weight:600}
+    .trend-up{color:var(--red)}.trend-down{color:var(--green)}.trend-flat{color:var(--muted)}
     .kpi-card.accent .kpi-value{color:var(--accent)}
     .kpi-card.red    .kpi-value{color:var(--red)}
     .kpi-card.yellow .kpi-value{color:var(--yellow)}
     .kpi-card.green  .kpi-value{color:var(--green)}
     .kpi-card.purple .kpi-value{color:var(--purple)}
 
-    /* CHARTS */
-    .charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));
-      gap:1.5rem;margin-bottom:2rem}
-    .chart-card{background:var(--bg2);border:1px solid var(--border);
-      border-radius:8px;padding:1.25rem}
-    .chart-title{font-size:.78rem;font-weight:600;color:var(--muted);
-      text-transform:uppercase;letter-spacing:.04em;margin-bottom:1rem}
+    /* PERIOD COMPARISON ────────────────────────────────────── */
+    .period-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1.25rem;margin-bottom:2rem}
+    .period-table{width:100%;border-collapse:collapse;font-size:.81rem;margin-top:.75rem}
+    .period-table th{text-align:left;padding:6px 10px;color:var(--muted);font-size:.7rem;
+      text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border)}
+    .period-table td{padding:7px 10px;border-bottom:1px solid var(--border)}
+    .period-table tr:last-child td{border-bottom:none}
+    .delta-pos{color:var(--red);font-weight:600}
+    .delta-neg{color:var(--green);font-weight:600}
+    .delta-flat{color:var(--muted)}
+
+    /* CHARTS ────────────────────────────────────────────────── */
+    .charts-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(400px,1fr));gap:1.5rem;margin-bottom:2rem}
+    .chart-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem}
+    .chart-title{font-size:.78rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-bottom:1rem}
     .chart-wrap{position:relative;height:260px}
     .chart-wrap.tall{height:300px}
 
-    /* FILTER BAR */
-    .filter-bar{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;
-      align-items:center}
+    /* FILTER BAR ────────────────────────────────────────────── */
+    .filter-bar{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;align-items:center}
     .filter-bar input,.filter-bar select{
       background:var(--bg3);border:1px solid var(--border);color:var(--text);
       border-radius:6px;padding:6px 10px;font-size:.82rem;outline:none}
@@ -74,126 +77,157 @@
     .filter-bar select option{background:var(--bg2)}
     .results-count{font-size:.78rem;color:var(--muted);margin-left:auto}
 
-    /* TABLE */
-    .table-card{background:var(--bg2);border:1px solid var(--border);
-      border-radius:8px;padding:1.25rem;margin-bottom:1.5rem;overflow-x:auto}
-    .table-header{display:flex;align-items:center;justify-content:space-between;
-      margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
+    /* TABLE ─────────────────────────────────────────────────── */
+    .table-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin-bottom:1.5rem;overflow-x:auto}
+    .table-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem}
     table{width:100%;border-collapse:collapse;font-size:.81rem}
-    th{text-align:left;padding:8px 10px;color:var(--muted);font-size:.72rem;
-      text-transform:uppercase;letter-spacing:.04em;border-bottom:1px solid var(--border);
-      font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
+    th{text-align:left;padding:8px 10px;color:var(--muted);font-size:.72rem;text-transform:uppercase;
+      letter-spacing:.04em;border-bottom:1px solid var(--border);font-weight:600;cursor:pointer;user-select:none;white-space:nowrap}
     th:hover{color:var(--text)}
-    th.sorted-asc::after{content:" ↑"}
-    th.sorted-desc::after{content:" ↓"}
+    th.sorted-asc::after{content:" ↑"}th.sorted-desc::after{content:" ↓"}
     td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text)}
     tr:last-child td{border-bottom:none}
     tr.clickable:hover td{background:var(--bg3);cursor:pointer}
     .empty-row td{color:var(--muted);text-align:center;padding:2rem;font-style:italic}
 
-    /* PAGINATION */
-    .pagination{display:flex;align-items:center;gap:.5rem;
-      margin-top:1rem;font-size:.82rem;justify-content:flex-end}
-    .pagination button{background:var(--bg3);border:1px solid var(--border);
-      color:var(--text);padding:4px 10px;border-radius:5px;cursor:pointer}
+    /* PAGINATION ────────────────────────────────────────────── */
+    .pagination{display:flex;align-items:center;gap:.5rem;margin-top:1rem;font-size:.82rem;justify-content:flex-end}
+    .pagination button{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:4px 10px;border-radius:5px;cursor:pointer}
     .pagination button:hover{border-color:var(--accent);color:var(--accent)}
     .pagination button:disabled{opacity:.35;cursor:default}
     .page-info{color:var(--muted)}
 
-    /* BADGES */
-    .badge{display:inline-block;padding:2px 7px;border-radius:10px;
-      font-size:.7rem;font-weight:700;text-transform:uppercase}
+    /* BADGES ────────────────────────────────────────────────── */
+    .badge{display:inline-block;padding:2px 7px;border-radius:10px;font-size:.7rem;font-weight:700;text-transform:uppercase}
     .risk-CRITICAL{background:rgba(255,77,77,.15);color:#ff4d4d}
     .risk-HIGH{background:rgba(248,81,73,.15);color:var(--red)}
     .risk-MEDIUM{background:rgba(210,153,34,.15);color:var(--yellow)}
     .risk-LOW{background:rgba(63,185,80,.15);color:var(--green)}
 
-    /* SIGNAL CARDS */
-    .signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
-      gap:1rem;margin-bottom:2rem}
-    .signal-card{background:var(--bg2);border:1px solid var(--border);
-      border-radius:8px;padding:1rem 1.2rem;cursor:pointer;transition:border-color .15s}
+    /* ALERT STATUS BADGES ───────────────────────────────────── */
+    .status-badge{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;
+      border-radius:10px;font-size:.69rem;font-weight:600;text-transform:uppercase}
+    .status-pendiente   {background:rgba(139,148,158,.12);color:var(--muted)}
+    .status-revision    {background:rgba(210,153,34,.15); color:var(--yellow)}
+    .status-escalado    {background:rgba(248,81,73,.15);  color:var(--red)}
+    .status-falso_positivo{background:rgba(63,185,80,.15);color:var(--green)}
+    .status-cerrado     {background:rgba(139,148,158,.12);color:var(--muted);text-decoration:line-through}
+
+    /* REVIEW BAR ────────────────────────────────────────────── */
+    .review-bar{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1rem 1.25rem;margin-bottom:1.5rem;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+    .review-stat{text-align:center}
+    .review-stat .rv{font-size:1.1rem;font-weight:700}
+    .review-stat .rl{font-size:.7rem;color:var(--muted)}
+    .review-progress-wrap{flex:1;min-width:200px}
+    .review-progress-track{background:var(--bg3);border-radius:4px;height:8px;margin-top:4px}
+    .review-progress-fill{height:8px;border-radius:4px;background:var(--accent);transition:width .4s}
+
+    /* SIGNAL CARDS ──────────────────────────────────────────── */
+    .signal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
+    .signal-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1rem 1.2rem;cursor:pointer;transition:border-color .15s}
     .signal-card:hover{border-color:var(--accent)}
-    .signal-code{font-size:.7rem;font-weight:700;letter-spacing:.08em;
-      color:var(--accent);margin-bottom:4px}
+    .signal-code{font-size:.7rem;font-weight:700;letter-spacing:.08em;color:var(--accent);margin-bottom:4px}
     .signal-desc{font-size:.79rem;color:var(--text);margin-bottom:10px;line-height:1.4}
     .signal-stats{display:flex;gap:12px}
     .signal-stat .val{font-size:1.1rem;font-weight:700}
     .signal-stat .lbl{font-size:.67rem;color:var(--muted)}
 
-    /* MODAL */
-    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.7);
-      z-index:500;display:none;align-items:center;justify-content:center;padding:1rem}
+    /* QUALITY TABLE ─────────────────────────────────────────── */
+    .quality-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin-bottom:1.5rem}
+    .quality-pill{display:inline-block;padding:2px 8px;border-radius:10px;font-size:.69rem;font-weight:600}
+    .q-ok   {background:rgba(63,185,80,.15);  color:var(--green)}
+    .q-warn {background:rgba(210,153,34,.15); color:var(--yellow)}
+    .q-high {background:rgba(248,81,73,.15);  color:var(--red)}
+
+    /* MODAL ─────────────────────────────────────────────────── */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:500;
+      display:none;align-items:center;justify-content:center;padding:1rem}
     .modal-backdrop.open{display:flex}
     .modal{background:var(--bg2);border:1px solid var(--border);border-radius:10px;
-      width:100%;max-width:700px;max-height:90vh;overflow-y:auto;position:relative}
+      width:100%;max-width:720px;max-height:90vh;overflow-y:auto}
     .modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border);
-      display:flex;align-items:center;justify-content:space-between}
-    .modal-title{font-weight:600;font-size:1rem}
-    .modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;
-      cursor:pointer;line-height:1;padding:0 4px}
+      display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .modal-title{font-weight:600;font-size:1rem;flex:1}
+    .modal-close{background:none;border:none;color:var(--muted);font-size:1.4rem;cursor:pointer;padding:0 4px}
     .modal-close:hover{color:var(--text)}
     .modal-body{padding:1.5rem}
     .detail-row{display:flex;gap:1rem;margin-bottom:.75rem;font-size:.84rem}
     .detail-label{color:var(--muted);width:160px;flex-shrink:0;font-size:.78rem}
     .detail-value{color:var(--text);flex:1}
     .detail-section{margin-bottom:1.25rem}
-    .detail-section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;
-      color:var(--muted);margin-bottom:.6rem;padding-bottom:.3rem;
-      border-bottom:1px solid var(--border)}
+    .detail-section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);
+      margin-bottom:.6rem;padding-bottom:.3rem;border-bottom:1px solid var(--border)}
     .methodology-box{background:var(--bg3);border-radius:6px;padding:1rem;
-      font-size:.82rem;line-height:1.6;color:var(--text);border-left:3px solid var(--accent)}
+      font-size:.82rem;line-height:1.6;border-left:3px solid var(--accent)}
     .tag{display:inline-block;background:var(--bg3);border:1px solid var(--border);
       border-radius:4px;padding:2px 8px;font-size:.72rem;color:var(--muted);margin-right:4px}
 
-    /* SQL TAB */
-    .sql-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
-      gap:1rem;margin-bottom:2rem}
+    /* STATUS ACTION BUTTONS ─────────────────────────────────── */
+    .status-actions{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.75rem}
+    .status-btn{padding:6px 14px;border-radius:6px;font-size:.78rem;font-weight:600;
+      cursor:pointer;border:1px solid transparent;transition:all .15s}
+    .status-btn:hover{opacity:.85}
+    .btn-pendiente   {background:var(--bg3);border-color:var(--border);color:var(--muted)}
+    .btn-revision    {background:rgba(210,153,34,.2);border-color:var(--yellow);color:var(--yellow)}
+    .btn-escalado    {background:rgba(248,81,73,.2); border-color:var(--red);   color:var(--red)}
+    .btn-falso_positivo{background:rgba(63,185,80,.2);border-color:var(--green);color:var(--green)}
+    .btn-cerrado     {background:var(--bg3);border-color:var(--border);color:var(--muted)}
+    .status-btn.active-btn{outline:2px solid currentColor;outline-offset:1px}
+
+    /* NETWORK GRAPH ─────────────────────────────────────────── */
+    .graph-container{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
+      padding:1.25rem;margin-bottom:1.5rem;overflow:hidden}
+    .graph-legend{display:flex;gap:1.5rem;margin-bottom:1rem;flex-wrap:wrap}
+    .legend-item{display:flex;align-items:center;gap:6px;font-size:.78rem;color:var(--muted)}
+    .legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+    #network-svg{width:100%;overflow:visible;display:block}
+    .node-hub{fill:#db6d28;stroke:#ff9a50;stroke-width:2;cursor:pointer;transition:all .2s}
+    .node-hub:hover{fill:#ff9a50;stroke:#fff}
+    .node-client{fill:#388bfd;stroke:#79c0ff;stroke-width:1.5;cursor:pointer;transition:all .2s}
+    .node-client:hover{fill:#79c0ff;stroke:#fff}
+    .node-label{font-size:10px;fill:var(--text);text-anchor:middle;pointer-events:none;dominant-baseline:central}
+    .node-sublabel{font-size:8px;fill:var(--muted);text-anchor:middle;pointer-events:none}
+    .graph-edge{stroke:var(--muted);opacity:.45;stroke-linecap:round}
+    .graph-edge:hover{opacity:.9}
+    .graph-tooltip{position:fixed;background:var(--bg2);border:1px solid var(--border);
+      border-radius:6px;padding:.6rem .9rem;font-size:.78rem;pointer-events:none;
+      opacity:0;transition:opacity .15s;z-index:300;max-width:220px;line-height:1.5}
+
+    /* SQL ────────────────────────────────────────────────────── */
+    .sql-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1rem;margin-bottom:2rem}
     .sql-card{background:var(--bg2);border:1px solid var(--border);border-radius:8px;
       padding:1rem 1.2rem;cursor:pointer;transition:border-color .15s}
     .sql-card:hover{border-color:var(--accent)}
     .sql-card-name{font-weight:600;font-size:.85rem;margin-bottom:.3rem}
     .sql-card-desc{font-size:.75rem;color:var(--muted)}
-    .sql-viewer{background:var(--bg3);border:1px solid var(--border);border-radius:8px;
-      padding:1.25rem;margin-bottom:1.5rem}
-    .sql-viewer pre{font-family:'JetBrains Mono','Fira Code',monospace;font-size:.76rem;
-      line-height:1.6;overflow-x:auto;color:#e6edf3;white-space:pre}
-    .sql-kw{color:#ff7b72}.sql-fn{color:#d2a8ff}.sql-str{color:#a5d6ff}
-    .sql-cm{color:#8b949e;font-style:italic}.sql-num{color:#f2cc60}
+    .sql-viewer{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:1.25rem;margin-bottom:1.5rem}
+    .sql-viewer pre{font-family:'JetBrains Mono','Fira Code',monospace;font-size:.76rem;line-height:1.6;overflow-x:auto;white-space:pre}
+    .sql-kw{color:#ff7b72}.sql-str{color:#a5d6ff}.sql-cm{color:#8b949e;font-style:italic}.sql-num{color:#f2cc60}
 
-    /* NETWORK */
-    .network-card{background:var(--bg2);border:1px solid var(--border);
-      border-radius:8px;padding:1.25rem;margin-bottom:1rem;
-      display:flex;align-items:flex-start;gap:1.5rem}
-    .network-icon{font-size:2rem;width:48px;text-align:center;flex-shrink:0}
-    .network-body{flex:1}
-    .network-stats{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.75rem}
-    .network-stat .val{font-size:1.2rem;font-weight:700;color:var(--red)}
-    .network-stat .lbl{font-size:.7rem;color:var(--muted)}
-
-    /* MISC */
+    /* MISC ──────────────────────────────────────────────────── */
     .bar-row{display:flex;align-items:center;gap:10px;margin-bottom:7px}
     .bar-label{width:100px;font-size:.75rem;color:var(--muted);text-align:right}
     .bar-track{flex:1;background:var(--bg3);border-radius:4px;height:7px}
     .bar-fill{height:7px;border-radius:4px;background:var(--accent)}
     .bar-count{width:45px;font-size:.75rem}
-    .section-title{font-size:.95rem;font-weight:600;margin-bottom:1rem;
-      padding-bottom:8px;border-bottom:1px solid var(--border)}
+    .section-title{font-size:.95rem;font-weight:600;margin-bottom:1rem;padding-bottom:8px;border-bottom:1px solid var(--border)}
     #loading{text-align:center;padding:5rem 2rem;color:var(--muted)}
     #error-msg{text-align:center;padding:4rem;color:var(--red);display:none}
-    .spinner{width:32px;height:32px;border:3px solid var(--border);
-      border-top-color:var(--accent);border-radius:50%;
-      animation:spin .8s linear infinite;margin:0 auto 1rem}
+    .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);
+      border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1rem}
     @keyframes spin{to{transform:rotate(360deg)}}
-    .num{font-variant-numeric:tabular-nums}
-    .right{text-align:right}
+    .num{font-variant-numeric:tabular-nums}.right{text-align:right}
     code{background:var(--bg3);padding:1px 5px;border-radius:3px;font-size:.8em}
-    a{color:var(--accent);text-decoration:none}.a:hover{text-decoration:underline}
+    a{color:var(--accent);text-decoration:none}
+    .network-stat-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-top:.75rem}
+    .network-stat .val{font-size:1.2rem;font-weight:700;color:var(--red)}
+    .network-stat .lbl{font-size:.7rem;color:var(--muted)}
   </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <div class="nav-brand">
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
@@ -210,29 +244,37 @@
   </div>
 </nav>
 
-<!-- TABS -->
 <div class="tabs">
-  <div class="tab active"  onclick="showTab('overview','this')">📊 Resumen</div>
-  <div class="tab"         onclick="showTab('alerts','this')">🚨 Alertas AML</div>
-  <div class="tab"         onclick="showTab('flows','this')">💸 Flujos</div>
-  <div class="tab"         onclick="showTab('clients','this')">👤 Clientes</div>
-  <div class="tab"         onclick="showTab('network','this')">🕸️ Redes</div>
-  <div class="tab"         onclick="showTab('sql','this')">🔍 Modelo SQL</div>
+  <div class="tab active" data-tab="overview">📊 Resumen</div>
+  <div class="tab" data-tab="alerts">🚨 Alertas AML</div>
+  <div class="tab" data-tab="flows">💸 Flujos</div>
+  <div class="tab" data-tab="clients">👤 Clientes</div>
+  <div class="tab" data-tab="network">🕸️ Redes</div>
+  <div class="tab" data-tab="sql">🔍 Modelo SQL</div>
 </div>
 
-<!-- LOADING -->
 <div id="loading"><div class="spinner"></div><p>Cargando datos del modelo...</p></div>
-<div id="error-msg">
-  <p>⚠️ No se encontró el archivo de datos.<br>
-  Ejecuta <code>./refresh.sh</code> para generar y publicar los datos.</p>
-</div>
+<div id="error-msg"><p>⚠️ No se encontró el archivo de datos.<br>Ejecuta <code>./refresh.sh</code> para generarlo.</p></div>
 
-<!-- MAIN -->
 <main id="main-content" style="display:none">
 
   <!-- ══ OVERVIEW ══════════════════════════════════════════════════════ -->
   <div class="section active" id="sec-overview">
     <div class="kpi-grid" id="kpi-grid"></div>
+
+    <!-- Comparativa período -->
+    <div class="period-card" id="period-comparison-card">
+      <div class="chart-title" style="margin-bottom:.5rem">Comparativa últimos 3 meses</div>
+      <table class="period-table" id="period-table">
+        <thead><tr>
+          <th>Mes</th><th class="right">Alertas</th><th class="right">Δ alertas</th>
+          <th class="right">Riesgo alto</th><th class="right">Δ riesgo alto</th>
+          <th class="right">Clientes únicos</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
     <div class="charts-grid">
       <div class="chart-card">
         <div class="chart-title">Alertas por nivel de riesgo</div>
@@ -251,25 +293,45 @@
 
   <!-- ══ ALERTS ════════════════════════════════════════════════════════ -->
   <div class="section" id="sec-alerts">
-    <div class="section-title">Señales AML — clic para ver metodología</div>
+    <div class="section-title">Señales AML — clic en tarjeta para ver metodología</div>
     <div class="signal-grid" id="signal-grid"></div>
 
+    <!-- Review progress bar -->
+    <div class="review-bar" id="review-bar">
+      <div class="review-stat"><div class="rv" id="rv-total">—</div><div class="rl">Total alertas</div></div>
+      <div class="review-stat"><div class="rv" id="rv-reviewed" style="color:var(--accent)">0</div><div class="rl">Revisadas</div></div>
+      <div class="review-stat"><div class="rv" id="rv-escalated" style="color:var(--red)">0</div><div class="rl">Escaladas</div></div>
+      <div class="review-stat"><div class="rv" id="rv-fp" style="color:var(--green)">0</div><div class="rl">Falsos positivos</div></div>
+      <div class="review-stat"><div class="rv" id="rv-fp-rate" style="color:var(--muted)">—</div><div class="rl">Tasa FP</div></div>
+      <div class="review-progress-wrap">
+        <div style="font-size:.75rem;color:var(--muted)">Progreso de revisión</div>
+        <div class="review-progress-track">
+          <div class="review-progress-fill" id="review-progress-fill" style="width:0%"></div>
+        </div>
+        <div style="font-size:.72rem;color:var(--muted);margin-top:3px" id="review-progress-pct">0% revisado</div>
+      </div>
+    </div>
+
+    <!-- Alerts table -->
     <div class="table-card">
       <div class="table-header">
-        <span class="chart-title" style="margin:0">Alertas individuales</span>
+        <span class="chart-title" style="margin:0">Alertas individuales (top 300 por severidad)</span>
       </div>
       <div class="filter-bar">
-        <input  id="alert-search"      type="text"   placeholder="🔍 Buscar cliente, valor...">
-        <select id="alert-filter-sig"  onchange="filterAlerts()">
-          <option value="">Todas las señales</option>
-        </select>
-        <select id="alert-filter-risk" onchange="filterAlerts()">
+        <input  id="alert-search"       type="text" placeholder="🔍 Buscar cliente, valor...">
+        <select id="alert-filter-sig"   onchange="filterAlerts()"><option value="">Todas las señales</option></select>
+        <select id="alert-filter-risk"  onchange="filterAlerts()">
           <option value="">Todos los niveles</option>
-          <option>CRITICAL</option><option>HIGH</option>
-          <option>MEDIUM</option><option>LOW</option>
+          <option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option>
         </select>
-        <select id="alert-filter-month" onchange="filterAlerts()">
-          <option value="">Todos los meses</option>
+        <select id="alert-filter-month" onchange="filterAlerts()"><option value="">Todos los meses</option></select>
+        <select id="alert-filter-status" onchange="filterAlerts()">
+          <option value="">Todos los estados</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="revision">En revisión</option>
+          <option value="escalado">Escalado</option>
+          <option value="falso_positivo">Falso positivo</option>
+          <option value="cerrado">Cerrado</option>
         </select>
         <span class="results-count" id="alert-count"></span>
       </div>
@@ -280,11 +342,29 @@
           <th onclick="sortTable('alerts',2)">Fecha</th>
           <th onclick="sortTable('alerts',3)">Cliente</th>
           <th>Valor señal</th>
-          <th>Ver</th>
+          <th onclick="sortTable('alerts',5)">Estado</th>
+          <th>Acción</th>
         </tr></thead>
         <tbody></tbody>
       </table>
       <div class="pagination" id="alert-pager"></div>
+    </div>
+
+    <!-- Signal quality -->
+    <div class="quality-card">
+      <div class="chart-title" style="margin-bottom:.75rem">Calidad de señales — densidad de alertas</div>
+      <p style="font-size:.78rem;color:var(--muted);margin-bottom:1rem">
+        El ratio alertas/cliente indica posible ruido en la señal. Un ratio alto puede indicar que el umbral necesita calibración.
+      </p>
+      <table id="quality-table">
+        <thead><tr>
+          <th>Señal</th><th>Descripción corta</th>
+          <th class="right">Alertas</th><th class="right">Clientes</th>
+          <th class="right">Ratio alerta/cliente</th><th class="right">% del total</th>
+          <th>Indicador</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
     </div>
   </div>
 
@@ -319,22 +399,15 @@
       <div id="country-bars"></div>
     </div>
     <div class="table-card">
-      <div class="table-header">
-        <span class="chart-title" style="margin:0">Top 100 clientes por volumen AV</span>
-      </div>
+      <div class="table-header"><span class="chart-title" style="margin:0">Top 100 clientes por volumen AV</span></div>
       <div class="filter-bar">
-        <input  id="cli-search"       type="text"   placeholder="🔍 Buscar país, segmento...">
-        <select id="cli-filter-risk"  onchange="filterClients()">
+        <input id="cli-search" type="text" placeholder="🔍 Buscar...">
+        <select id="cli-filter-risk" onchange="filterClients()">
           <option value="">Todos los riesgos</option>
-          <option>CRITICAL</option><option>HIGH</option>
-          <option>MEDIUM</option><option>LOW</option>
+          <option>CRITICAL</option><option>HIGH</option><option>MEDIUM</option><option>LOW</option>
         </select>
-        <select id="cli-filter-ctry"  onchange="filterClients()">
-          <option value="">Todos los países</option>
-        </select>
-        <select id="cli-filter-seg"   onchange="filterClients()">
-          <option value="">Todos los segmentos</option>
-        </select>
+        <select id="cli-filter-ctry" onchange="filterClients()"><option value="">Todos los países</option></select>
+        <select id="cli-filter-seg"  onchange="filterClients()"><option value="">Todos los segmentos</option></select>
         <span class="results-count" id="cli-count"></span>
       </div>
       <table id="table-clients">
@@ -359,20 +432,40 @@
   <div class="section" id="sec-network">
     <div class="section-title">Redes de posibles mulas financieras (AV-03)</div>
     <p style="font-size:.82rem;color:var(--muted);margin-bottom:1.5rem">
-      Personas externas que fondean a 2 o más clientes distintos con exposición AV.
+      Personas externas que fondean a 2 o más clientes distintos con exposición AV. Los nodos naranjas son las personas externas (hubs); los azules son los clientes fondeados. El grosor de cada línea es proporcional al monto transferido.
     </p>
-    <div id="network-list"></div>
+
+    <!-- Network SVG graph -->
+    <div class="graph-container">
+      <div class="graph-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#db6d28;border:2px solid #ff9a50"></div>Persona externa (hub)</div>
+        <div class="legend-item"><div class="legend-dot" style="background:#388bfd;border:2px solid #79c0ff"></div>Cliente Global66</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--muted);width:30px;height:3px;border-radius:2px"></div>Operación CR</div>
+      </div>
+      <svg id="network-svg" height="420"></svg>
+    </div>
+    <div class="graph-tooltip" id="graph-tooltip"></div>
+
+    <!-- Summary table -->
+    <div class="table-card">
+      <div class="chart-title" style="margin-bottom:.75rem">Resumen de redes detectadas</div>
+      <table>
+        <thead><tr>
+          <th>Red</th><th>Nivel de riesgo</th><th class="right">Clientes fondeados</th>
+          <th class="right">Operaciones CR</th><th class="right">Total fondeado</th>
+          <th>Período activo</th><th>Detalle</th>
+        </tr></thead>
+        <tbody id="network-table-body"></tbody>
+      </table>
+    </div>
   </div>
 
   <!-- ══ SQL ═══════════════════════════════════════════════════════════ -->
   <div class="section" id="sec-sql">
     <div class="section-title">Modelo SQL — Arquitectura dbt en Redshift</div>
     <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.5rem">
-      El modelo sigue una arquitectura de 3 capas: <strong>Staging → Intermediate → Marts</strong>.
-      Cada capa transforma los datos de <code>db_prod</code> hasta producir las tablas de análisis.
-      Código fuente completo en
-      <a href="https://github.com/BMackenna-G66/av-kyt-sfc" target="_blank">
-        github.com/BMackenna-G66/av-kyt-sfc</a> (privado).
+      Arquitectura de 3 capas: <strong>Staging → Intermediate → Marts</strong>.
+      Código completo en <a href="https://github.com/BMackenna-G66/av-kyt-sfc" target="_blank">github.com/BMackenna-G66/av-kyt-sfc</a> (privado).
     </p>
     <div class="sql-grid" id="sql-nav"></div>
     <div id="sql-viewer-container"></div>
@@ -381,150 +474,221 @@
 </main>
 
 <!-- MODAL -->
-<div class="modal-backdrop" id="modal-backdrop" onclick="closeModal(event)">
+<div class="modal-backdrop" id="modal-backdrop">
   <div class="modal" id="modal">
     <div class="modal-header">
       <div class="modal-title" id="modal-title">Detalle</div>
-      <button class="modal-close" onclick="closeModal()">×</button>
+      <button class="modal-close" id="modal-close-btn">×</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
   </div>
 </div>
 
 <script>
-// ═══════════════════════════════════════════════════════════════════════
-// CONSTANTS & STATE
-// ═══════════════════════════════════════════════════════════════════════
-const C = {
-  CRITICAL:'#ff4d4d', HIGH:'#f85149', MEDIUM:'#d29922', LOW:'#3fb950',
-  accent:'#388bfd', purple:'#bc8cff', orange:'#db6d28', muted:'#8b949e',
-};
-const SIG_COLORS = ['#388bfd','#58a6ff','#79c0ff','#3fb950','#56d364',
-                    '#d29922','#e3b341','#f85149','#bc8cff','#ff7b72'];
+// ═══════════════════════════════════════════════════════════
+// CONFIG & STATE
+// ═══════════════════════════════════════════════════════════
+const C = {CRITICAL:'#ff4d4d',HIGH:'#f85149',MEDIUM:'#d29922',LOW:'#3fb950',
+           accent:'#388bfd',purple:'#bc8cff',orange:'#db6d28',muted:'#8b949e'};
+const SIG_COLORS = ['#388bfd','#58a6ff','#79c0ff','#3fb950','#56d364','#d29922','#e3b341','#f85149','#bc8cff','#ff7b72'];
 Chart.defaults.color='#8b949e'; Chart.defaults.borderColor='#30363d';
 
-let ALL = {};   // raw exported data
-const STATE = {
-  alerts:  {rows:[], sorted:[], page:1, sortCol:-1, sortDir:1},
-  clients: {rows:[], sorted:[], page:1, sortCol:-1, sortDir:1},
-};
 const PAGE_SIZE = 25;
+let ALL = {};
+const STATE = {
+  alerts:{rows:[],sorted:[],page:1,sortCol:-1,sortDir:1},
+  clients:{rows:[],sorted:[],page:1,sortCol:-1,sortDir:1},
+};
 
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // UTILS
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 const fmt    = (n,d=0) => n==null?'—':Number(n).toLocaleString('es-CO',{minimumFractionDigits:d,maximumFractionDigits:d});
-const fmtUSD = v => { if(v==null) return '—'; const n=Number(v); if(n>=1e6) return '$'+fmt(n/1e6,1)+'M'; if(n>=1e3) return '$'+fmt(n/1e3,1)+'K'; return '$'+fmt(n,0); };
+const fmtUSD = v => { if(v==null)return'—'; const n=Number(v); if(n>=1e6)return'$'+fmt(n/1e6,1)+'M'; if(n>=1e3)return'$'+fmt(n/1e3,1)+'K'; return'$'+fmt(n,0); };
+const esc    = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 const badge  = r => `<span class="badge risk-${r}">${r}</span>`;
-const esc    = s => String(s||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const delta  = (curr,prev) => {
+  if(!prev||!curr) return {txt:'—',cls:'delta-flat'};
+  const p = ((curr-prev)/prev*100);
+  if(Math.abs(p)<1) return {txt:'≈',cls:'delta-flat'};
+  return p>0 ? {txt:`+${p.toFixed(1)}%`,cls:'delta-pos'} : {txt:`${p.toFixed(1)}%`,cls:'delta-neg'};
+};
 
-// ═══════════════════════════════════════════════════════════════════════
-// TABS
-// ═══════════════════════════════════════════════════════════════════════
-function showTab(id, el) {
-  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  (el==='this' ? event.target : document.querySelectorAll('.tab')[0]).classList.add('active');
-  // re-find clicked tab
-  event && event.target && event.target.classList.add('active');
-  document.getElementById('sec-'+id).classList.add('active');
+// ═══════════════════════════════════════════════════════════
+// ALERT STATE MANAGEMENT (localStorage)
+// ═══════════════════════════════════════════════════════════
+const STATUS_META = {
+  pendiente:    {label:'Pendiente',    icon:'⏳'},
+  revision:     {label:'En revisión', icon:'🔍'},
+  escalado:     {label:'Escalado',    icon:'🚨'},
+  falso_positivo:{label:'Falso +',    icon:'✓'},
+  cerrado:      {label:'Cerrado',     icon:'✗'},
+};
+
+function alertKey(r) { return `av_${r.signal_code}_${r.customer_ref}_${r.alert_date}`; }
+
+function getStatus(key) {
+  try { return JSON.parse(localStorage.getItem(key)) || {status:'pendiente'}; }
+  catch { return {status:'pendiente'}; }
 }
 
-// ═══════════════════════════════════════════════════════════════════════
+function setStatus(key, status) {
+  localStorage.setItem(key, JSON.stringify({status, updated_at: new Date().toISOString(), reviewer:'Compliance Team'}));
+  updateReviewBar();
+  filterAlerts();
+}
+
+function statusBadge(st) {
+  const m = STATUS_META[st] || STATUS_META.pendiente;
+  return `<span class="status-badge status-${st}">${m.icon} ${m.label}</span>`;
+}
+
+function updateReviewBar() {
+  if(!ALL.alerts_detail) return;
+  const total = Number(ALL.kpis?.total_alerts || 0);
+  let reviewed=0, escalated=0, fp=0;
+  ALL.alerts_detail.forEach(r => {
+    const s = getStatus(alertKey(r)).status;
+    if(s !== 'pendiente') reviewed++;
+    if(s === 'escalado') escalated++;
+    if(s === 'falso_positivo') fp++;
+  });
+  document.getElementById('rv-total').textContent     = fmt(total);
+  document.getElementById('rv-reviewed').textContent  = fmt(reviewed);
+  document.getElementById('rv-escalated').textContent = fmt(escalated);
+  document.getElementById('rv-fp').textContent        = fmt(fp);
+  const fpRate = reviewed > 0 ? (fp/reviewed*100).toFixed(1)+'%' : '—';
+  document.getElementById('rv-fp-rate').textContent   = fpRate;
+  const pct = total > 0 ? (reviewed/Math.min(total,300)*100) : 0;
+  document.getElementById('review-progress-fill').style.width = Math.min(pct,100)+'%';
+  document.getElementById('review-progress-pct').textContent = pct.toFixed(1)+'% revisado (muestra de 300)';
+}
+
+// ═══════════════════════════════════════════════════════════
+// TABS
+// ═══════════════════════════════════════════════════════════
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('sec-'+tab.dataset.tab).classList.add('active');
+  });
+});
+
+// ═══════════════════════════════════════════════════════════
 // MODAL
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function openModal(title, html) {
   document.getElementById('modal-title').textContent = title;
   document.getElementById('modal-body').innerHTML = html;
   document.getElementById('modal-backdrop').classList.add('open');
 }
-function closeModal(e) {
-  if(e && e.target !== document.getElementById('modal-backdrop')) return;
-  document.getElementById('modal-backdrop').classList.remove('open');
-}
-document.addEventListener('keydown', e => { if(e.key==='Escape') document.getElementById('modal-backdrop').classList.remove('open'); });
+function closeModal() { document.getElementById('modal-backdrop').classList.remove('open'); }
+document.getElementById('modal-close-btn').onclick = closeModal;
+document.getElementById('modal-backdrop').addEventListener('click', e => { if(e.target.id==='modal-backdrop') closeModal(); });
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeModal(); });
 
-// ═══════════════════════════════════════════════════════════════════════
-// KPIs
-// ═══════════════════════════════════════════════════════════════════════
-function renderKPIs(d) {
+// ═══════════════════════════════════════════════════════════
+// KPIs + PERIOD COMPARISON
+// ═══════════════════════════════════════════════════════════
+function renderKPIs(kpis, monthly) {
+  // Compute trends from last 2 months
+  const months = [...new Set((monthly||[]).map(r=>r.month))].sort();
+  const lastM  = months[months.length-1];
+  const prevM  = months[months.length-2];
+  const last   = monthly.find(r=>r.month===lastM)||{};
+  const prev   = monthly.find(r=>r.month===prevM)||{};
+
+  const tA = delta(Number(last.total_alerts||0), Number(prev.total_alerts||0));
+  const tH = delta(Number(last.high_risk_alerts||0), Number(prev.high_risk_alerts||0));
+
   document.getElementById('kpi-grid').innerHTML = [
-    {label:'Clientes AV expuestos', val:fmt(d.total_clients),    sub:'Total período',       cls:'accent'},
-    {label:'Alertas AML generadas', val:fmt(d.total_alerts),     sub:'Señales AV-01→AV-10', cls:'red'},
-    {label:'Clientes alto riesgo',  val:fmt(d.high_risk_clients),sub:'HIGH + CRITICAL',      cls:'yellow'},
-    {label:'Redes de mulas',        val:fmt(d.mule_networks),    sub:'Señal AV-03',          cls:'purple'},
-    {label:'Volumen total AV',      val:fmtUSD(d.total_volume_usd), sub:'USD acumulado',     cls:'green'},
+    {label:'Clientes AV expuestos', val:fmt(kpis.total_clients),       sub:'Total período',       cls:'accent', trend:null},
+    {label:'Alertas AML generadas', val:fmt(kpis.total_alerts),        sub:'Señales AV-01→AV-10', cls:'red',    trend:tA},
+    {label:'Clientes alto riesgo',  val:fmt(kpis.high_risk_clients),   sub:'HIGH + CRITICAL',     cls:'yellow', trend:tH},
+    {label:'Redes de mulas',        val:fmt(kpis.mule_networks),       sub:'Señal AV-03',         cls:'purple', trend:null},
+    {label:'Volumen total AV',      val:fmtUSD(kpis.total_volume_usd), sub:'USD acumulado',       cls:'green',  trend:null},
   ].map(c=>`<div class="kpi-card ${c.cls}">
     <div class="kpi-label">${c.label}</div>
     <div class="kpi-value num">${c.val}</div>
-    <div class="kpi-sub">${c.sub}</div></div>`).join('');
-  const ts = d.last_updated
-    ? new Date(d.last_updated).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
+    <div class="kpi-sub">${c.sub}</div>
+    ${c.trend ? `<div class="kpi-trend ${c.trend.cls}">${c.trend.txt} vs mes anterior</div>` : ''}
+  </div>`).join('');
+
+  // Set nav timestamp
+  const ts = kpis.last_updated
+    ? new Date(kpis.last_updated).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
     : '—';
   document.getElementById('last-updated').textContent = ts;
 }
 
-// ═══════════════════════════════════════════════════════════════════════
+function renderPeriodComparison(monthly) {
+  const months = [...new Set(monthly.map(r=>r.month))].sort();
+  const last3  = months.slice(-3);
+  const tbody  = document.querySelector('#period-table tbody');
+  tbody.innerHTML = last3.map((m, i) => {
+    const curr = monthly.find(r=>r.month===m) || {};
+    const prev = i>0 ? monthly.find(r=>r.month===last3[i-1]) : null;
+    const dA = prev ? delta(Number(curr.total_alerts||0), Number(prev.total_alerts||0)) : null;
+    const dH = prev ? delta(Number(curr.high_risk_alerts||0), Number(prev.high_risk_alerts||0)) : null;
+    return `<tr>
+      <td><strong>${m}</strong>${i===last3.length-1?' <span style="font-size:.68rem;color:var(--accent)">(último)</span>':''}</td>
+      <td class="right num">${fmt(curr.total_alerts)}</td>
+      <td class="right"><span class="${dA?dA.cls:'delta-flat'}">${dA?dA.txt:'—'}</span></td>
+      <td class="right num">${fmt(curr.high_risk_alerts)}</td>
+      <td class="right"><span class="${dH?dH.cls:'delta-flat'}">${dH?dH.txt:'—'}</span></td>
+      <td class="right num">${fmt(curr.unique_clients)}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
 // OVERVIEW CHARTS
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function renderOverviewCharts(data) {
-  // Risk donut
   const rr = data.alerts_by_risk;
-  new Chart(document.getElementById('ch-risk-donut'),{
-    type:'doughnut',
-    data:{labels:rr.map(r=>r.risk_level),
-      datasets:[{data:rr.map(r=>Number(r.total)),
-        backgroundColor:rr.map(r=>(C[r.risk_level]||C.muted)+'cc'),
-        borderWidth:2,borderColor:'#161b22'}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'right'},
-        tooltip:{callbacks:{label:c=>` ${c.label}: ${fmt(c.raw)}`}}}},
+  new Chart(document.getElementById('ch-risk-donut'),{type:'doughnut',
+    data:{labels:rr.map(r=>r.risk_level),datasets:[{data:rr.map(r=>Number(r.total)),
+      backgroundColor:rr.map(r=>(C[r.risk_level]||C.muted)+'cc'),borderWidth:2,borderColor:'#161b22'}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'},
+      tooltip:{callbacks:{label:c=>` ${c.label}: ${fmt(c.raw)}`}}}},
   });
-  // Signals bar
   const sr = data.alerts_by_signal;
-  new Chart(document.getElementById('ch-signals-bar'),{
-    type:'bar',
-    data:{labels:sr.map(r=>r.signal_code),
-      datasets:[{label:'Alertas',data:sr.map(r=>Number(r.total_alerts)),
-        backgroundColor:SIG_COLORS,borderRadius:4}]},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false}},
+  new Chart(document.getElementById('ch-signals-bar'),{type:'bar',
+    data:{labels:sr.map(r=>r.signal_code),datasets:[{label:'Alertas',
+      data:sr.map(r=>Number(r.total_alerts)),backgroundColor:SIG_COLORS,borderRadius:4}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{x:{grid:{display:false}},y:{grid:{color:'#21262d'},beginAtZero:true}}},
   });
-  // Timeline stacked
   const rows = data.alerts_timeline;
   const months = [...new Set(rows.map(r=>r.month))].sort();
-  new Chart(document.getElementById('ch-timeline'),{
-    type:'bar',
+  new Chart(document.getElementById('ch-timeline'),{type:'bar',
     data:{labels:months,datasets:['CRITICAL','HIGH','MEDIUM','LOW'].map(lv=>({
-      label:lv,
-      data:months.map(m=>{const r=rows.find(x=>x.month===m&&x.risk_level===lv);return r?Number(r.total):0;}),
+      label:lv, data:months.map(m=>{const r=rows.find(x=>x.month===m&&x.risk_level===lv);return r?Number(r.total):0;}),
       backgroundColor:C[lv]+'bb',borderColor:C[lv],borderWidth:1,
     }))},
-    options:{responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{position:'top'}},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},
       scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'#21262d'}}}},
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// ALERTS TABLE with filters + pagination + sort
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// ALERTS TABLE
+// ═══════════════════════════════════════════════════════════
 function initAlerts(data) {
-  STATE.alerts.rows = data.alerts_detail || [];
-  // Populate signal filter
+  STATE.alerts.rows = data.alerts_detail||[];
   const sigs = [...new Set(STATE.alerts.rows.map(r=>r.signal_code))].sort();
   const sigSel = document.getElementById('alert-filter-sig');
   sigs.forEach(s=>{const o=document.createElement('option');o.value=s;o.textContent=s;sigSel.appendChild(o);});
-  // Populate month filter
-  const months = [...new Set(STATE.alerts.rows.map(r=>r.alert_date?.slice(0,7)))].filter(Boolean).sort().reverse();
+  const months = [...new Set(STATE.alerts.rows.map(r=>r.alert_date?.slice(0,7))).values()].filter(Boolean).sort().reverse();
   const mSel = document.getElementById('alert-filter-month');
   months.forEach(m=>{const o=document.createElement('option');o.value=m;o.textContent=m;mSel.appendChild(o);});
   document.getElementById('alert-search').addEventListener('input', filterAlerts);
+  renderSignalCards(data.alerts_by_signal, data.signal_methodology||[]);
+  renderSignalQuality(data.alerts_by_signal);
   filterAlerts();
-
-  // Signal cards
-  renderSignalCards(data.alerts_by_signal, data.signal_methodology);
+  updateReviewBar();
 }
 
 function filterAlerts() {
@@ -532,83 +696,103 @@ function filterAlerts() {
   const sig  = document.getElementById('alert-filter-sig').value;
   const risk = document.getElementById('alert-filter-risk').value;
   const mon  = document.getElementById('alert-filter-month').value;
-  STATE.alerts.sorted = STATE.alerts.rows.filter(r =>
-    (!sig  || r.signal_code===sig) &&
-    (!risk || r.risk_level===risk) &&
-    (!mon  || r.alert_date?.startsWith(mon)) &&
-    (!q    || [r.customer_ref,r.signal_value,r.signal_code,r.signal_description].join(' ').toLowerCase().includes(q))
-  );
-  STATE.alerts.page = 1;
+  const st   = document.getElementById('alert-filter-status').value;
+  STATE.alerts.sorted = STATE.alerts.rows.filter(r => {
+    if(sig  && r.signal_code !== sig) return false;
+    if(risk && r.risk_level  !== risk) return false;
+    if(mon  && !r.alert_date?.startsWith(mon)) return false;
+    if(st) { const s = getStatus(alertKey(r)).status; if(s!==st) return false; }
+    if(q && ![r.customer_ref,r.signal_value,r.signal_code,r.signal_description].join(' ').toLowerCase().includes(q)) return false;
+    return true;
+  });
+  STATE.alerts.page=1;
   renderAlertsPage();
 }
 
 function renderAlertsPage() {
-  const {sorted, page} = STATE.alerts;
-  const start = (page-1)*PAGE_SIZE, end = start+PAGE_SIZE;
-  const slice = sorted.slice(start, end);
-  const tbody = document.querySelector('#table-alerts tbody');
+  const {sorted,page} = STATE.alerts;
+  const start=(page-1)*PAGE_SIZE, end=start+PAGE_SIZE;
+  const slice=sorted.slice(start,end);
   document.getElementById('alert-count').textContent = `${fmt(sorted.length)} resultados`;
+  const tbody = document.querySelector('#table-alerts tbody');
   if(!slice.length){
-    tbody.innerHTML='<tr class="empty-row"><td colspan="6">Sin resultados para los filtros aplicados.</td></tr>';
-    document.getElementById('alert-pager').innerHTML='';return;
+    tbody.innerHTML='<tr class="empty-row"><td colspan="7">Sin resultados.</td></tr>';
+    document.getElementById('alert-pager').innerHTML=''; return;
   }
-  tbody.innerHTML = slice.map((r,i) => `
-    <tr class="clickable" onclick="openAlertDetail(${start+i})">
+  tbody.innerHTML = slice.map((r,i) => {
+    const key = alertKey(r);
+    const st  = getStatus(key).status;
+    return `<tr class="clickable" onclick="openAlertDetail(${start+i})">
       <td><strong style="color:var(--accent)">${esc(r.signal_code)}</strong></td>
       <td>${badge(r.risk_level)}</td>
       <td class="num">${esc(r.alert_date)}</td>
       <td><code>${esc(r.customer_ref)}</code></td>
-      <td style="max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${esc(r.signal_value)}">${esc(r.signal_value||'—')}</td>
-      <td><span style="color:var(--accent);cursor:pointer;font-size:.8rem">▶ Ver</span></td>
-    </tr>`).join('');
-  renderPager('alert-pager', sorted.length, page, p=>{STATE.alerts.page=p;renderAlertsPage();});
+      <td style="max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"
+          title="${esc(r.signal_value)}">${esc(r.signal_value||'—')}</td>
+      <td>${statusBadge(st)}</td>
+      <td onclick="event.stopPropagation()">
+        <select style="background:var(--bg3);border:1px solid var(--border);color:var(--text);
+                border-radius:5px;padding:3px 6px;font-size:.72rem;cursor:pointer"
+          onchange="setStatus('${esc(key)}',this.value)">
+          ${Object.entries(STATUS_META).map(([k,v])=>
+            `<option value="${k}" ${st===k?'selected':''}>${v.icon} ${v.label}</option>`).join('')}
+        </select>
+      </td>
+    </tr>`;
+  }).join('');
+  renderPager('alert-pager',sorted.length,page,p=>{STATE.alerts.page=p;renderAlertsPage();});
 }
 
 function openAlertDetail(idx) {
-  const r = STATE.alerts.sorted[idx];
-  const meth = (ALL.signal_methodology||[]).find(m=>m.code===r.signal_code) || {};
-  const stats = (ALL.alerts_by_signal||[]).find(s=>s.signal_code===r.signal_code) || {};
+  const r    = STATE.alerts.sorted[idx];
+  const key  = alertKey(r);
+  const st   = getStatus(key).status;
+  const meth = (ALL.signal_methodology||[]).find(m=>m.code===r.signal_code)||{};
+  const stats= (ALL.alerts_by_signal||[]).find(s=>s.signal_code===r.signal_code)||{};
   openModal(`${r.signal_code} — ${meth.name||r.signal_code}`, `
     <div class="detail-section">
       <div class="detail-section-title">Alerta</div>
-      <div class="detail-row"><span class="detail-label">Señal</span><span class="detail-value"><strong>${esc(r.signal_code)}</strong> · ${esc(meth.name||'')}</span></div>
-      <div class="detail-row"><span class="detail-label">Nivel de riesgo</span><span class="detail-value">${badge(r.risk_level)}</span></div>
-      <div class="detail-row"><span class="detail-label">Fecha</span><span class="detail-value">${esc(r.alert_date)}</span></div>
-      <div class="detail-row"><span class="detail-label">Cliente (ref.)</span><span class="detail-value"><code>${esc(r.customer_ref)}</code></span></div>
-      <div class="detail-row"><span class="detail-label">Valor señal</span><span class="detail-value">${esc(r.signal_value||'—')}</span></div>
+      ${[['Señal',`<strong>${esc(r.signal_code)}</strong> · ${esc(meth.name||'')}`],
+         ['Nivel de riesgo',badge(r.risk_level)],
+         ['Fecha',esc(r.alert_date)],
+         ['Cliente (ref.)',`<code>${esc(r.customer_ref)}</code>`],
+         ['Valor señal',esc(r.signal_value||'—')],
+      ].map(([l,v])=>`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${v}</span></div>`).join('')}
     </div>
-    <div class="detail-section">
-      <div class="detail-section-title">Descripción de la señal</div>
-      <p style="font-size:.83rem;color:var(--muted)">${esc(r.signal_description||meth.logic||'')}</p>
-    </div>
-    ${meth.logic ? `
+    ${meth.logic?`
     <div class="detail-section">
       <div class="detail-section-title">Metodología de detección</div>
       <div class="methodology-box">${esc(meth.logic)}</div>
-      <div style="margin-top:.75rem;font-size:.78rem">
-        <span class="tag">Umbral: ${esc(meth.threshold||'—')}</span>
-        <span class="tag">Categoría: ${esc(meth.category||'—')}</span>
-        <span class="tag">Riesgo base: ${esc(meth.risk||'—')}</span>
-      </div>
-    </div>` : ''}
+      <div style="margin-top:.75rem">${['Umbral: '+esc(meth.threshold||'—'),'Categoría: '+esc(meth.category||'—'),'Riesgo base: '+esc(meth.risk||'—')].map(t=>`<span class="tag">${t}</span>`).join('')}</div>
+    </div>`:''}
     <div class="detail-section">
       <div class="detail-section-title">Estadísticas globales de esta señal</div>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap">
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
         ${[['Total alertas',fmt(stats.total_alerts)],['Clientes únicos',fmt(stats.unique_clients)],
            ['CRITICAL',fmt(stats.critical_count)],['HIGH',fmt(stats.high_count)],
-           ['MEDIUM',fmt(stats.medium_count)],['LOW',fmt(stats.low_count)]].map(([l,v])=>`
-          <div><div style="font-size:1.1rem;font-weight:700;color:var(--accent)">${v}</div>
-               <div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
+           ['MEDIUM',fmt(stats.medium_count)],['LOW',fmt(stats.low_count)]
+        ].map(([l,v])=>`<div><div style="font-size:1.1rem;font-weight:700;color:var(--accent)">${v}</div><div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
+      </div>
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Estado de revisión</div>
+      <div style="margin-bottom:.5rem">Estado actual: ${statusBadge(st)}</div>
+      <div class="status-actions">
+        ${Object.entries(STATUS_META).map(([k,v])=>`
+          <button class="status-btn btn-${k} ${st===k?'active-btn':''}"
+            onclick="setStatus('${esc(key)}','${k}');document.querySelector('.modal .detail-section:last-child .status-actions').innerHTML=document.querySelector('.modal .detail-section:last-child .status-actions').innerHTML">
+            ${v.icon} ${v.label}
+          </button>`).join('')}
       </div>
     </div>`);
 }
 
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 // SIGNAL CARDS
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function renderSignalCards(rows, methodology) {
-  document.getElementById('signal-grid').innerHTML = rows.map((r,i)=>`
-    <div class="signal-card" onclick="openSignalModal('${r.signal_code}')">
+  document.getElementById('signal-grid').innerHTML = rows.map((r,i)=>
+    `<div class="signal-card" onclick="openSignalModal('${r.signal_code}')">
       <div class="signal-code">${r.signal_code} · ${(methodology.find(m=>m.code===r.signal_code)||{}).category||''}</div>
       <div class="signal-desc">${esc(r.signal_description)}</div>
       <div class="signal-stats">
@@ -623,113 +807,115 @@ function renderSignalCards(rows, methodology) {
 function openSignalModal(code) {
   const meth  = (ALL.signal_methodology||[]).find(m=>m.code===code)||{};
   const stats = (ALL.alerts_by_signal||[]).find(s=>s.signal_code===code)||{};
-  const related = (ALL.alerts_detail||[]).filter(r=>r.signal_code===code).slice(0,5);
+  const recent= (ALL.alerts_detail||[]).filter(r=>r.signal_code===code).slice(0,5);
   openModal(`${code} — ${meth.name||code}`, `
     <div class="detail-section">
       <div class="detail-section-title">Descripción</div>
-      <div class="methodology-box">${esc(meth.logic||stats.signal_description||'—')}</div>
+      <div class="methodology-box">${esc(meth.logic||'—')}</div>
     </div>
     <div class="detail-section">
-      <div class="detail-section-title">Parámetros de detección</div>
+      <div class="detail-section-title">Parámetros</div>
       <div class="detail-row"><span class="detail-label">Umbral</span><span class="detail-value">${esc(meth.threshold||'—')}</span></div>
       <div class="detail-row"><span class="detail-label">Categoría AML</span><span class="detail-value">${esc(meth.category||'—')}</span></div>
-      <div class="detail-row"><span class="detail-label">Riesgo base</span><span class="detail-value">${badge(meth.risk?.split('/')[0]||'MEDIUM')}</span></div>
+      <div class="detail-row"><span class="detail-label">Riesgo base</span><span class="detail-value">${badge((meth.risk||'MEDIUM').split('/')[0])}</span></div>
     </div>
     <div class="detail-section">
-      <div class="detail-section-title">Resultados en el período</div>
-      <div style="display:flex;gap:2rem;flex-wrap:wrap">
-        ${[['Total alertas',fmt(stats.total_alerts),'var(--accent)'],
-           ['Clientes únicos',fmt(stats.unique_clients),'var(--muted)'],
-           ['CRITICAL',fmt(stats.critical_count),'#ff4d4d'],
-           ['HIGH',fmt(stats.high_count),'var(--red)'],
-           ['MEDIUM',fmt(stats.medium_count),'var(--yellow)'],
-           ['LOW',fmt(stats.low_count),'var(--green)']].map(([l,v,c])=>`
-          <div><div style="font-size:1.1rem;font-weight:700;color:${c}">${v}</div>
-               <div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
+      <div class="detail-section-title">Resultados</div>
+      <div style="display:flex;gap:1.5rem;flex-wrap:wrap">
+        ${[['Total alertas',fmt(stats.total_alerts),'var(--accent)'],['Clientes únicos',fmt(stats.unique_clients),'var(--muted)'],
+           ['CRITICAL',fmt(stats.critical_count),'#ff4d4d'],['HIGH',fmt(stats.high_count),'var(--red)'],
+           ['MEDIUM',fmt(stats.medium_count),'var(--yellow)'],['LOW',fmt(stats.low_count),'var(--green)']
+        ].map(([l,v,c])=>`<div><div style="font-size:1.1rem;font-weight:700;color:${c}">${v}</div><div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
       </div>
     </div>
-    ${related.length ? `
+    ${recent.length?`
     <div class="detail-section">
       <div class="detail-section-title">Alertas recientes (muestra)</div>
-      <table style="width:100%">
-        <thead><tr><th>Nivel</th><th>Fecha</th><th>Cliente</th><th>Valor</th></tr></thead>
-        <tbody>${related.map(r=>`<tr>
-          <td>${badge(r.risk_level)}</td>
-          <td class="num">${esc(r.alert_date)}</td>
-          <td><code>${esc(r.customer_ref)}</code></td>
-          <td style="max-width:150px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.signal_value||'—')}</td>
-        </tr>`).join('')}</tbody>
-      </table>
-    </div>` : ''}
+      <table><thead><tr><th>Nivel</th><th>Fecha</th><th>Cliente</th><th>Valor</th></tr></thead>
+      <tbody>${recent.map(r=>`<tr><td>${badge(r.risk_level)}</td><td class="num">${esc(r.alert_date)}</td>
+        <td><code>${esc(r.customer_ref)}</code></td>
+        <td style="max-width:140px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">${esc(r.signal_value||'—')}</td>
+      </tr>`).join('')}</tbody></table>
+    </div>`:''}
   `);
 }
 
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// SIGNAL QUALITY TABLE
+// ═══════════════════════════════════════════════════════════
+function renderSignalQuality(rows) {
+  const total = rows.reduce((s,r)=>s+Number(r.total_alerts||0),0);
+  document.querySelector('#quality-table tbody').innerHTML = rows.map(r => {
+    const ratio = Number(r.unique_clients)>0 ? (Number(r.total_alerts)/Number(r.unique_clients)).toFixed(1) : '—';
+    const pct   = total>0 ? (Number(r.total_alerts)/total*100).toFixed(1)+'%' : '—';
+    const rv    = Number(ratio);
+    const pill  = rv>50 ? '<span class="quality-pill q-high">Revisar umbral</span>'
+                : rv>10 ? '<span class="quality-pill q-warn">Alta densidad</span>'
+                :         '<span class="quality-pill q-ok">Normal</span>';
+    return `<tr>
+      <td><strong style="color:var(--accent)">${esc(r.signal_code)}</strong></td>
+      <td style="max-width:240px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.78rem">${esc(r.signal_description)}</td>
+      <td class="right num">${fmt(r.total_alerts)}</td>
+      <td class="right num">${fmt(r.unique_clients)}</td>
+      <td class="right num">${ratio}</td>
+      <td class="right num">${pct}</td>
+      <td>${pill}</td>
+    </tr>`;
+  }).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
 // FLOWS CHARTS
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 function renderFlows(rows) {
   const months  = [...new Set(rows.map(r=>r.period_month))].sort();
   const sources = [...new Set(rows.map(r=>r.source))];
   const pal = [C.accent,C.purple,C.orange,C.LOW,'#e3b341'];
-  const mkDs = (field, type) => sources.map((s,i)=>({
-    label:s, type,
-    data:months.map(m=>{const r=rows.find(x=>x.period_month===m&&x.source===s); return r?Number(r[field]):null;}),
-    borderColor:pal[i%pal.length], backgroundColor:pal[i%pal.length]+'33',
-    tension:.3, fill:false, spanGaps:true, borderWidth:2, pointRadius:3,
-  }));
-  new Chart(document.getElementById('ch-flows-vol'),{
-    type:'line', data:{labels:months, datasets:mkDs('total_usd','line')},
+  new Chart(document.getElementById('ch-flows-vol'),{type:'line',
+    data:{labels:months,datasets:sources.map((s,i)=>({
+      label:s, data:months.map(m=>{const r=rows.find(x=>x.period_month===m&&x.source===s);return r?Number(r.total_usd):null;}),
+      borderColor:pal[i%pal.length],backgroundColor:pal[i%pal.length]+'22',tension:.3,fill:false,spanGaps:true,borderWidth:2,pointRadius:3,
+    }))},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},
       scales:{x:{grid:{display:false}},y:{grid:{color:'#21262d'},ticks:{callback:fmtUSD}}}},
   });
-  new Chart(document.getElementById('ch-flows-ops'),{
-    type:'bar',
+  new Chart(document.getElementById('ch-flows-ops'),{type:'bar',
     data:{labels:months,datasets:sources.map((s,i)=>({
-      label:s, data:months.map(m=>{const r=rows.find(x=>x.period_month===m&&x.source===s);return r?Number(r.op_count):null;}),
-      backgroundColor:pal[i%pal.length]+'bb', borderRadius:3, spanGaps:true,
+      label:s,data:months.map(m=>{const r=rows.find(x=>x.period_month===m&&x.source===s);return r?Number(r.op_count):null;}),
+      backgroundColor:pal[i%pal.length]+'bb',borderRadius:3,spanGaps:true,
     }))},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top'}},
       scales:{x:{stacked:true,grid:{display:false}},y:{stacked:true,grid:{color:'#21262d'}}}},
   });
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// CLIENTS TABLE
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// CLIENTS
+// ═══════════════════════════════════════════════════════════
 function initClients(data) {
   STATE.clients.rows = data.top_clients||[];
   const dist = data.client_distribution||{};
-
-  // Charts
-  new Chart(document.getElementById('ch-cli-risk'),{
-    type:'doughnut',
-    data:{labels:dist.by_risk.map(r=>r.risk_level),
-      datasets:[{data:dist.by_risk.map(r=>Number(r.total)),
-        backgroundColor:dist.by_risk.map(r=>(C[r.risk_level]||C.muted)+'cc'),
-        borderWidth:2,borderColor:'#161b22'}]},
+  new Chart(document.getElementById('ch-cli-risk'),{type:'doughnut',
+    data:{labels:dist.by_risk.map(r=>r.risk_level),datasets:[{data:dist.by_risk.map(r=>Number(r.total)),
+      backgroundColor:dist.by_risk.map(r=>(C[r.risk_level]||C.muted)+'cc'),borderWidth:2,borderColor:'#161b22'}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right'}}},
   });
-  new Chart(document.getElementById('ch-cli-vol'),{
-    type:'bar',
-    data:{labels:dist.by_volume.map(r=>r.volume_band),
-      datasets:[{label:'Clientes',data:dist.by_volume.map(r=>Number(r.total)),
-        backgroundColor:['#3fb950bb','#388bfdbb','#d29922bb','#f85149bb','#bc8cffbb'],borderRadius:4}]},
+  new Chart(document.getElementById('ch-cli-vol'),{type:'bar',
+    data:{labels:dist.by_volume.map(r=>r.volume_band),datasets:[{label:'Clientes',
+      data:dist.by_volume.map(r=>Number(r.total)),
+      backgroundColor:['#3fb950bb','#388bfdbb','#d29922bb','#f85149bb','#bc8cffbb'],borderRadius:4}]},
     options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
       scales:{x:{grid:{display:false}},y:{grid:{color:'#21262d'}}}},
   });
   const max = Math.max(...dist.by_country.map(r=>Number(r.total)));
   document.getElementById('country-bars').innerHTML = dist.by_country.map(r=>`
-    <div class="bar-row">
-      <div class="bar-label">${r.country_code||'—'}</div>
-      <div class="bar-track"><div class="bar-fill" style="width:${(Number(r.total)/max*100).toFixed(1)}%"></div></div>
-      <div class="bar-count num">${fmt(r.total)}</div>
-    </div>`).join('');
+    <div class="bar-row"><div class="bar-label">${r.country_code||'—'}</div>
+    <div class="bar-track"><div class="bar-fill" style="width:${(Number(r.total)/max*100).toFixed(1)}%"></div></div>
+    <div class="bar-count num">${fmt(r.total)}</div></div>`).join('');
 
-  // Populate filters
-  const ctrys = [...new Set(STATE.clients.rows.map(r=>r.country_code).filter(Boolean))].sort();
-  const segs  = [...new Set(STATE.clients.rows.map(r=>r.segmentation).filter(Boolean))].sort();
-  const cs = document.getElementById('cli-filter-ctry');
-  const ss = document.getElementById('cli-filter-seg');
+  const ctrys=[...new Set(STATE.clients.rows.map(r=>r.country_code).filter(Boolean))].sort();
+  const segs =[...new Set(STATE.clients.rows.map(r=>r.segmentation).filter(Boolean))].sort();
+  const cs=document.getElementById('cli-filter-ctry'), ss=document.getElementById('cli-filter-seg');
   ctrys.forEach(c=>{const o=document.createElement('option');o.textContent=c;cs.appendChild(o);});
   segs.forEach(s=>{const o=document.createElement('option');o.textContent=s;ss.appendChild(o);});
   document.getElementById('cli-search').addEventListener('input',filterClients);
@@ -737,30 +923,23 @@ function initClients(data) {
 }
 
 function filterClients() {
-  const q    = document.getElementById('cli-search').value.toLowerCase();
-  const risk = document.getElementById('cli-filter-risk').value;
-  const ctry = document.getElementById('cli-filter-ctry').value;
-  const seg  = document.getElementById('cli-filter-seg').value;
-  STATE.clients.sorted = STATE.clients.rows.filter(r=>
-    (!risk || r.risk_level===risk) &&
-    (!ctry || r.country_code===ctry) &&
-    (!seg  || r.segmentation===seg) &&
-    (!q    || [r.customer_ref,r.country_code,r.segmentation,r.risk_level,r.compliance_status].join(' ').toLowerCase().includes(q))
+  const q=document.getElementById('cli-search').value.toLowerCase();
+  const risk=document.getElementById('cli-filter-risk').value;
+  const ctry=document.getElementById('cli-filter-ctry').value;
+  const seg=document.getElementById('cli-filter-seg').value;
+  STATE.clients.sorted=STATE.clients.rows.filter(r=>
+    (!risk||r.risk_level===risk)&&(!ctry||r.country_code===ctry)&&(!seg||r.segmentation===seg)&&
+    (!q||[r.customer_ref,r.country_code,r.segmentation,r.risk_level].join(' ').toLowerCase().includes(q))
   );
-  STATE.clients.page=1;
-  renderClientsPage();
+  STATE.clients.page=1; renderClientsPage();
 }
 
 function renderClientsPage() {
   const {sorted,page}=STATE.clients;
-  const start=(page-1)*PAGE_SIZE, end=start+PAGE_SIZE;
-  const slice=sorted.slice(start,end);
+  const start=(page-1)*PAGE_SIZE,end=start+PAGE_SIZE,slice=sorted.slice(start,end);
   document.getElementById('cli-count').textContent=`${fmt(sorted.length)} resultados`;
   const tbody=document.querySelector('#table-clients tbody');
-  if(!slice.length){
-    tbody.innerHTML='<tr class="empty-row"><td colspan="9">Sin resultados.</td></tr>';
-    document.getElementById('cli-pager').innerHTML='';return;
-  }
+  if(!slice.length){tbody.innerHTML='<tr class="empty-row"><td colspan="9">Sin resultados.</td></tr>';document.getElementById('cli-pager').innerHTML='';return;}
   tbody.innerHTML=slice.map((r,i)=>`
     <tr class="clickable" onclick="openClientDetail(${start+i})">
       <td><code>${esc(r.customer_ref)}</code></td>
@@ -777,48 +956,34 @@ function renderClientsPage() {
 }
 
 function openClientDetail(idx) {
-  const r = STATE.clients.sorted[idx];
-  openModal(`Cliente ${r.customer_ref}`, `
+  const r=STATE.clients.sorted[idx];
+  openModal(`Cliente ${r.customer_ref}`,`
     <div class="detail-section">
       <div class="detail-section-title">Perfil</div>
-      ${[['Referencia',`<code>${esc(r.customer_ref)}</code>`],
-         ['País',esc(r.country_code||'—')],
-         ['Segmento',esc(r.segmentation||'—')],
-         ['Nivel de riesgo',badge(r.risk_level)],
-         ['Estado compliance',esc(r.compliance_status||'—')],
-         ['Antigüedad',esc(r.seniority_band||'—')],
-         ['Franja de edad',esc(r.age_band||'—')],
-         ['Días activo AV',fmt(r.active_days_av)],
-         ['Primera op. AV',esc(r.first_av_date||'—')],
-         ['Última op. AV',esc(r.last_av_date||'—')],
+      ${[['Referencia',`<code>${esc(r.customer_ref)}</code>`],['País',esc(r.country_code||'—')],
+         ['Segmento',esc(r.segmentation||'—')],['Riesgo',badge(r.risk_level)],
+         ['Estado',esc(r.compliance_status||'—')],['Antigüedad',esc(r.seniority_band||'—')],
+         ['Franja edad',esc(r.age_band||'—')],['Días activo AV',fmt(r.active_days_av)],
+         ['Primera op. AV',esc(r.first_av_date||'—')],['Última op. AV',esc(r.last_av_date||'—')]
       ].map(([l,v])=>`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${v}</span></div>`).join('')}
     </div>
     <div class="detail-section">
       <div class="detail-section-title">Volumen AV</div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem">
-        ${[['Total AV',fmtUSD(r.total_av_usd),'var(--green)'],
-           ['Operaciones',fmt(r.total_av_operations),'var(--accent)'],
-           ['Ticket prom.',fmtUSD(r.avg_ticket_usd),'var(--muted)'],
-           ['Total CR',fmtUSD(r.total_cr_usd),'var(--yellow)'],
-           ['Total DR',fmtUSD(r.total_dr_usd),'var(--red)'],
-           ['Total Trx',fmtUSD(r.total_trx_usd),'var(--purple)'],
+        ${[['Total AV',fmtUSD(r.total_av_usd),'var(--green)'],['Operaciones',fmt(r.total_av_operations),'var(--accent)'],
+           ['Ticket prom.',fmtUSD(r.avg_ticket_usd),'var(--muted)'],['Total CR',fmtUSD(r.total_cr_usd),'var(--yellow)'],
+           ['Total DR',fmtUSD(r.total_dr_usd),'var(--red)'],['Total Trx',fmtUSD(r.total_trx_usd),'var(--purple)']
         ].map(([l,v,c])=>`<div style="background:var(--bg3);padding:.75rem;border-radius:6px">
           <div style="font-size:1.1rem;font-weight:700;color:${c}">${v}</div>
           <div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
       </div>
-      ${r.dr_vs_cr_ratio!=null ? `
-      <div style="margin-top:.75rem;font-size:.83rem;color:var(--muted)">
-        Ratio DR/CR: <strong style="color:${Number(r.dr_vs_cr_ratio)>0.8?'var(--red)':'var(--green)'}">${fmt(r.dr_vs_cr_ratio,4)}</strong>
-        · Horas CR→DR: <strong>${fmt(r.hours_last_cr_to_last_dr)}</strong>
-      </div>` : ''}
+      ${r.dr_vs_cr_ratio!=null?`<div style="margin-top:.75rem;font-size:.83rem;color:var(--muted)">Ratio DR/CR: <strong style="color:${Number(r.dr_vs_cr_ratio)>0.8?'var(--red)':'var(--green)'}">${fmt(r.dr_vs_cr_ratio,4)}</strong> · Horas CR→DR: <strong>${fmt(r.hours_last_cr_to_last_dr)}</strong></div>`:''}
     </div>
     <div class="detail-section">
       <div class="detail-section-title">Scoring dimensional</div>
       <div style="display:flex;gap:2rem;flex-wrap:wrap">
-        ${[['Volumen',r.volume_score,'var(--accent)'],
-           ['Antigüedad',r.seniority_score,'var(--purple)'],
-           ['Velocidad',r.velocity_score,'var(--orange)'],
-           ['Score total',r.composite_score,'var(--yellow)'],
+        ${[['Volumen',r.volume_score,'var(--accent)'],['Antigüedad',r.seniority_score,'var(--purple)'],
+           ['Velocidad',r.velocity_score,'var(--orange)'],['Score total',r.composite_score,'var(--yellow)']
         ].map(([l,v,c])=>`<div style="text-align:center">
           <div style="font-size:1.5rem;font-weight:700;color:${c}">${v??'—'}</div>
           <div style="font-size:.72rem;color:var(--muted)">${l}</div></div>`).join('')}
@@ -826,310 +991,145 @@ function openClientDetail(idx) {
     </div>`);
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// NETWORK
-// ═══════════════════════════════════════════════════════════════════════
-function renderNetwork(rows) {
-  document.getElementById('network-list').innerHTML = !rows?.length
-    ? '<p style="color:var(--muted)">No se encontraron redes activas.</p>'
-    : rows.map((r,i)=>`
-      <div class="network-card">
-        <div class="network-icon">🕸️</div>
-        <div class="network-body">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
-            <strong>Red #${i+1}</strong>${badge(r.network_risk_level)}
-          </div>
-          <div style="font-size:.78rem;color:var(--muted)">Activa ${r.first_cr_date} → ${r.last_cr_date}</div>
-          <div class="network-stats">
-            <div class="network-stat"><div class="val num">${fmt(r.unique_clients_funded)}</div><div class="lbl">clientes fondeados</div></div>
-            <div class="network-stat"><div class="val num">${fmt(r.total_cr_count)}</div><div class="lbl">operaciones CR</div></div>
-            <div class="network-stat"><div class="val num">${fmtUSD(r.total_cr_usd)}</div><div class="lbl">total fondeado</div></div>
-            <div class="network-stat"><div class="val num">${fmtUSD(r.avg_cr_usd)}</div><div class="lbl">promedio por op.</div></div>
-          </div>
-        </div>
-      </div>`).join('');
-}
+// ═══════════════════════════════════════════════════════════
+// NETWORK GRAPH (SVG circular layout)
+// ═══════════════════════════════════════════════════════════
+function renderNetworkGraph(edges, networks) {
+  const svg    = document.getElementById('network-svg');
+  const W      = svg.parentElement.clientWidth || 900;
+  const H      = 420;
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+  svg.setAttribute('height', H);
 
-// ═══════════════════════════════════════════════════════════════════════
-// SQL VIEWER
-// ═══════════════════════════════════════════════════════════════════════
-const SQL_MODELS = [
-  {name:'stg_transactions', layer:'Staging', desc:'Transacciones exitosas con flag de exposición AV (Bridge/crypto)', sql:`
--- Transacciones con exposición a activos virtuales
--- Fuente: product_gateway.transaction (db_prod datashare)
-with source as (
-    select * from product_gateway.transaction
-    where start_date >= '2021-01-01'
-      and upper(tx_status) = 'TRANSFERENCIA_EXITOSA'
-),
-av_currencies as (
-    select lower(currency_code) as currency_code
-    from av_kyt.av_currencies
-)
-select
-    t.transaction_id::varchar(100)  as transaction_id,
-    t.customer_id,
-    t.start_date,
-    t.payment_method,
-    t.outbound_bank_name,
-    t.inbound_bank_name,
-    coalesce(t.destiny_amount_usd, t.origin_amount_usd) as amount_usd,
-    -- Flag AV: Bridge o moneda cripto
-    case when lower(t.payment_method)    ilike '%bridge%' then true
-         when lower(t.origin_currency)   in (select currency_code from av_currencies) then true
-         when lower(t.destiny_currency)  in (select currency_code from av_currencies) then true
-         else false
-    end as is_av_exposed
-from source t`},
-  {name:'stg_cash_calls', layer:'Staging', desc:'Cash calls pagados con flag de exposición AV', sql:`
--- Cash calls (fondeos/retiros) con exposición a activos virtuales
--- Fuente: treasury.cash_call (db_prod datashare)
-with source as (
-    select * from treasury.cash_call
-    where creation_date >= '2021-01-01'
-      and lower(status) = 'paid'
-),
-av_currencies as (
-    select lower(currency_code) as currency_code
-    from av_kyt.av_currencies
-)
-select
-    c.cash_call_id::varchar(100)  as cash_call_id,
-    c.customer_id,
-    c.creation_date,
-    upper(c.type)                 as type,  -- CR o DR
-    c.payment_method,
-    c.currency_code,
-    c.persona_dni,
-    c.remitter_dni,
-    coalesce(c.origin_amount_usd, c.destiny_amount_usd) as amount_usd,
-    case when lower(c.payment_method) ilike '%bridge%' then true
-         when lower(c.currency_code) in (select currency_code from av_currencies) then true
-         else false
-    end as is_av_exposed
-from source c`},
-  {name:'int_av_exposed_clients', layer:'Intermediate', desc:'Universo de clientes con cualquier exposición AV — base de todo el modelo', sql:`
--- Clientes con exposición AV: une transacciones y cash calls
--- Materialized: ephemeral (inline en marts como CTE)
-with trx_exposed as (
-    select
-        customer_id::varchar(100)     as customer_id,
-        'TRANSACTION'::varchar(30)    as source,
-        transaction_id::varchar(100)  as operation_id,
-        start_date::timestamp         as operation_date,
-        amount_usd::decimal(18,4)     as amount_usd,
-        null::varchar(10)             as type
-    from stg_transactions
-    where is_av_exposed = true
-),
-cc_exposed as (
-    select
-        customer_id::varchar(100)     as customer_id,
-        'CASH_CALL'::varchar(30)      as source,
-        cash_call_id::varchar(100)    as operation_id,
-        creation_date::timestamp      as operation_date,
-        amount_usd::decimal(18,4)     as amount_usd,
-        type::varchar(10)             as type
-    from stg_cash_calls
-    where is_av_exposed = true
-)
-select
-    customer_id,
-    count(*)                    as total_av_operations,
-    sum(amount_usd)             as total_av_usd,
-    min(operation_date)         as first_av_date,
-    max(operation_date)         as last_av_date,
-    datediff(day, min(operation_date), max(operation_date)) as active_days_av,
-    sum(case when source='CASH_CALL' and type='CR' then amount_usd else 0 end) as total_cr_usd,
-    sum(case when source='CASH_CALL' and type='DR' then amount_usd else 0 end) as total_dr_usd,
-    sum(case when source='TRANSACTION'             then amount_usd else 0 end) as total_trx_usd
-from (select * from trx_exposed union all select * from cc_exposed)
-group by customer_id`},
-  {name:'mart_av_client_profile', layer:'Mart', desc:'Perfil completo de cada cliente AV con scoring dimensional', sql:`
--- Perfil de cliente AV: demografía + volumen + scoring
--- Join: clientes expuestos × datos de cliente × flujo CR/DR
-select
-    c.customer_id, c.email, c.name, c.country_code,
-    c.age_band, c.onboarding_date, c.customer_age_days,
-    c.seniority_band, c.segmentation, c.risk_level,
-
-    -- Exposición AV
-    e.total_av_operations,  e.total_av_usd,
-    e.first_av_date,        e.last_av_date,
-    e.total_cr_usd,         e.total_dr_usd,
-
-    -- Scoring dimensional (1-4)
-    case when e.total_av_usd > 100000 then 4
-         when e.total_av_usd > 50000  then 3
-         when e.total_av_usd > 10000  then 2
-         else 1 end                               as volume_score,
-    case when c.customer_age_days < 30  then 4
-         when c.customer_age_days < 90  then 3
-         when c.customer_age_days < 180 then 2
-         else 1 end                               as seniority_score,
-    case when f.hours_last_cr_to_last_dr between 0 and 6   then 4
-         when f.hours_last_cr_to_last_dr between 0 and 24  then 3
-         when f.hours_last_cr_to_last_dr between 0 and 72  then 2
-         else 1 end                               as velocity_score
-
-from int_av_exposed_clients e
-inner join stg_customers    c on e.customer_id = c.customer_id
-left join  int_av_cr_dr_matched f on e.customer_id = f.customer_id`},
-  {name:'mart_av_alerts', layer:'Mart', desc:'28 K+ alertas: las 10 señales AML aplicadas a todos los clientes expuestos', sql:`
--- Tabla maestra de alertas AML (AV-01 a AV-10)
--- Cada señal detecta un patrón de riesgo distinto
-
--- AV-01: Velocidad CR→DR < 24h
-with av01 as (
-    select customer_id::varchar(100) as customer_id,
-           'AV-01'::varchar(10)      as signal_code,
-           'CR crypto seguido de DR en menos de 24 horas' as signal_description,
-           'HIGH'::varchar(20)       as risk_level,
-           last_cr_date::timestamp   as alert_date,
-           hours_last_cr_to_last_dr::varchar(50) as signal_value
-    from int_av_cr_dr_matched
-    where hours_last_cr_to_last_dr between 0 and 24
-),
--- AV-02: Fraccionamiento ≥3 CR < USD 1.000
--- AV-03: Red de mulas (DNI externo → múltiples clientes)
--- AV-04 a AV-10: ver repo para SQL completo
--- ...
-all_alerts as (
-    select * from av01
-    union all select * from av02
-    -- union all ... av03 ... av10
-)
-select customer_id, signal_code, signal_description,
-       risk_level, alert_date, signal_value,
-       current_timestamp as dbt_loaded_at
-from all_alerts`},
-  {name:'mart_av_flows', layer:'Mart', desc:'Serie de tiempo mensual de volumen y conteo de operaciones por cliente', sql:`
--- Flujo mensual de operaciones AV por cliente y fuente
-with trx_monthly as (
-    select
-        customer_id::varchar(100)          as customer_id,
-        to_char(start_date, 'YYYY-MM')     as period_month,
-        'TRANSACTION'::varchar(40)         as source,
-        count(*)::bigint                   as op_count,
-        sum(amount_usd::decimal(18,4))     as total_usd,
-        avg(amount_usd::decimal(18,4))     as avg_usd
-    from stg_transactions
-    where is_av_exposed = true
-    group by customer_id, to_char(start_date, 'YYYY-MM')
-),
-cc_monthly as (
-    select
-        customer_id::varchar(100)              as customer_id,
-        to_char(creation_date, 'YYYY-MM')      as period_month,
-        ('CASH_CALL_' || type)::varchar(40)    as source,
-        count(*)::bigint                       as op_count,
-        sum(amount_usd::decimal(18,4))         as total_usd,
-        avg(amount_usd::decimal(18,4))         as avg_usd
-    from stg_cash_calls
-    where is_av_exposed = true
-    group by customer_id, to_char(creation_date, 'YYYY-MM'), type
-)
-select * from trx_monthly
-union all
-select * from cc_monthly`},
-  {name:'mart_av_network', layer:'Mart', desc:'Redes de mulas: personas externas que fondean múltiples clientes AV', sql:`
--- Personas externas (vía persona_dni en CR) que fondean ≥2 clientes AV
--- Base de la señal AV-03
-
-with cr_with_external as (
-    select
-        customer_id,
-        regexp_replace(persona_dni, '[^0-9]', '')   as externo_dni_clean,
-        persona_dni                                  as externo_dni_original,
-        amount_usd,
-        creation_date
-    from stg_cash_calls
-    where type = 'CR'
-      and is_av_exposed = true
-      and persona_dni is not null
-      and trim(regexp_replace(persona_dni, '[^0-9]', '')) not in ('', '0')
-)
-select
-    externo_dni_clean,
-    count(*)                   as total_cr_count,
-    count(distinct customer_id) as unique_clients_funded,
-    sum(amount_usd)            as total_cr_usd,
-    min(creation_date)         as first_cr_date,
-    max(creation_date)         as last_cr_date,
-    case when count(distinct customer_id) >= 10 then 'CRITICAL'
-         when count(distinct customer_id) >= 5  then 'HIGH'
-         else 'MEDIUM' end    as network_risk_level
-from cr_with_external
-group by externo_dni_clean
-having count(distinct customer_id) >= 2`},
-];
-
-const LAYER_COLOR = {Staging:'var(--muted)',Intermediate:'var(--yellow)',Mart:'var(--green)'};
-
-function renderSQL() {
-  const nav = document.getElementById('sql-nav');
-  nav.innerHTML = SQL_MODELS.map((m,i)=>`
-    <div class="sql-card" onclick="showSQL(${i})">
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
-        <div class="sql-card-name">${m.name}</div>
-        <span style="font-size:.68rem;color:${LAYER_COLOR[m.layer]||'var(--muted)'}">▶ ${m.layer}</span>
-      </div>
-      <div class="sql-card-desc">${m.desc}</div>
-    </div>`).join('');
-
-  // Show first by default
-  showSQL(0);
-}
-
-function showSQL(idx) {
-  const m = SQL_MODELS[idx];
-  // Highlight selected card
-  document.querySelectorAll('.sql-card').forEach((c,i)=>{
-    c.style.borderColor = i===idx ? 'var(--accent)' : '';
+  // Build cluster data: group edges by hub_id
+  const clusters = {};
+  (edges||[]).forEach(e => {
+    if(!clusters[e.hub_id]) clusters[e.hub_id] = {
+      hub_id:e.hub_id, risk:e.network_risk_level,
+      hub_total_usd:e.hub_total_usd, unique_clients:e.unique_clients_funded,
+      clients:[]
+    };
+    clusters[e.hub_id].clients.push(e);
   });
-  // Simple syntax highlight
-  function hl(sql) {
-    return sql
-      .replace(/--[^\n]*/g, s=>`<span class="sql-cm">${s}</span>`)
-      .replace(/\b(select|from|where|join|inner|left|on|group\s+by|order\s+by|having|with|union\s+all|union|as|and|or|not|null|true|false|case|when|then|else|end|count|sum|avg|min|max|coalesce|round|datediff|regexp_replace|to_char|upper|lower|trim|left|ilike|distinct|create|table|view|insert|into|values|drop|if)\b/gi,
-          s=>`<span class="sql-kw">${s}</span>`)
-      .replace(/'[^']*'/g, s=>`<span class="sql-str">${s}</span>`)
-      .replace(/\b(\d+(?:\.\d+)?)\b/g, s=>`<span class="sql-num">${s}</span>`);
-  }
-  document.getElementById('sql-viewer-container').innerHTML = `
-    <div class="sql-viewer">
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
-        <div>
-          <strong>${m.name}</strong>
-          <span style="margin-left:.75rem;font-size:.72rem;color:${LAYER_COLOR[m.layer]}">${m.layer}</span>
-        </div>
-        <a href="https://github.com/BMackenna-G66/av-kyt-sfc/tree/main/models"
-           target="_blank" style="font-size:.78rem;color:var(--accent)">Ver código completo →</a>
-      </div>
-      <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">${m.desc}</p>
-      <pre>${hl(esc(m.sql.trim()))}</pre>
-    </div>`;
+  const cList = Object.values(clusters);
+  if(!cList.length) { svg.innerHTML='<text x="50%" y="50%" text-anchor="middle" fill="#8b949e" font-size="14">Sin datos de grafo disponibles</text>'; return; }
+
+  const maxUSD = Math.max(...(edges||[]).map(e=>Number(e.edge_total_usd||0)),1);
+  const RISK_COL = {CRITICAL:'#ff4d4d',HIGH:'#f85149',MEDIUM:'#d29922',LOW:'#3fb950'};
+  const RADIUS   = Math.min(130, (W/cList.length/2)-30);
+  const clusterW = W / cList.length;
+
+  let svgHtml = '';
+  // Render edges first, then nodes on top
+  let edgesHtml='', nodesHtml='';
+
+  cList.forEach((cl, ci) => {
+    const cx = clusterW*(ci+0.5);
+    const cy = H/2 + 20;
+    const r  = cl.clients.length;
+    const clientR = RADIUS;
+
+    // Client positions
+    cl.clients.forEach((e, ki) => {
+      const angle = (2*Math.PI*ki/r) - Math.PI/2;
+      const ex = cx + clientR*Math.cos(angle);
+      const ey = cy + clientR*Math.sin(angle);
+      const thickness = Math.max(1, Math.min(5, Number(e.edge_total_usd||0)/maxUSD*5));
+
+      edgesHtml += `<line class="graph-edge" x1="${cx.toFixed(1)}" y1="${cy.toFixed(1)}"
+        x2="${ex.toFixed(1)}" y2="${ey.toFixed(1)}" stroke-width="${thickness.toFixed(1)}"
+        data-tip="${esc(e.edge_cr_count)} ops · ${fmtUSD(e.edge_total_usd)} · último: ${esc(e.edge_last_date)}"/>`;
+
+      const cid = 'cli_'+ci+'_'+ki;
+      nodesHtml += `
+        <circle id="${cid}" class="node-client" cx="${ex.toFixed(1)}" cy="${ey.toFixed(1)}" r="16"
+          data-tip="Cliente: ${esc(e.client_id?.slice(0,4)+'****')} | ${fmtUSD(e.edge_total_usd)} | ${esc(e.edge_cr_count)} ops CR"/>
+        <text class="node-label" x="${ex.toFixed(1)}" y="${ey.toFixed(1)}">${esc(e.client_id?.slice(0,4)+'*')}</text>`;
+    });
+
+    // Hub node
+    const hubRiskC = RISK_COL[cl.risk]||'#db6d28';
+    const hid = 'hub_'+ci;
+    nodesHtml += `
+      <circle id="${hid}" class="node-hub" cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="26"
+        stroke="${hubRiskC}" data-network-idx="${ci}"
+        data-tip="Red ${ci+1} · ${esc(cl.risk)} · ${cl.unique_clients} clientes · ${fmtUSD(cl.hub_total_usd)}"
+        onclick="openNetworkDetail(${ci})"/>
+      <text class="node-label" x="${cx.toFixed(1)}" y="${(cy-5).toFixed(1)}" style="font-size:9px">EXT</text>
+      <text class="node-sublabel" x="${cx.toFixed(1)}" y="${(cy+9).toFixed(1)}">Red ${ci+1}</text>
+      <text x="${cx.toFixed(1)}" y="${(cy+50).toFixed(1)}" text-anchor="middle"
+        style="font-size:10px;fill:${hubRiskC};font-weight:600">${esc(cl.risk)}</text>`;
+  });
+
+  svg.innerHTML = edgesHtml + nodesHtml;
+
+  // Tooltip
+  const tip = document.getElementById('graph-tooltip');
+  svg.querySelectorAll('[data-tip]').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      tip.textContent = el.dataset.tip;
+      tip.style.opacity='1';
+      tip.style.left=(e.clientX+12)+'px';
+      tip.style.top=(e.clientY-10)+'px';
+    });
+    el.addEventListener('mouseleave', () => { tip.style.opacity='0'; });
+  });
+
+  // Network summary table
+  const tbody = document.getElementById('network-table-body');
+  tbody.innerHTML = (networks||[]).map((n,i)=>`<tr>
+    <td><strong>Red #${i+1}</strong></td>
+    <td>${badge(n.network_risk_level)}</td>
+    <td class="right num">${fmt(n.unique_clients_funded)}</td>
+    <td class="right num">${fmt(n.total_cr_count)}</td>
+    <td class="right num">${fmtUSD(n.total_cr_usd)}</td>
+    <td style="font-size:.78rem;color:var(--muted)">${esc(n.first_cr_date)} → ${esc(n.last_cr_date)}</td>
+    <td><span style="color:var(--accent);cursor:pointer;font-size:.8rem" onclick="openNetworkDetail(${i})">▶ Ver</span></td>
+  </tr>`).join('');
 }
 
-// ═══════════════════════════════════════════════════════════════════════
-// SORT + PAGINATION
-// ═══════════════════════════════════════════════════════════════════════
+function openNetworkDetail(idx) {
+  const n = (ALL.network||[])[idx];
+  if(!n) return;
+  const clEdges = (ALL.network_graph||[]).filter((_,i) => {
+    const hubs = [...new Set((ALL.network_graph||[]).map(e=>e.hub_id))];
+    return e => e.hub_id === hubs[idx];
+  });
+  openModal(`Red #${idx+1} — ${n.network_risk_level}`,`
+    <div class="detail-section">
+      <div class="detail-section-title">Resumen de la red</div>
+      ${[['Nivel de riesgo',badge(n.network_risk_level)],
+         ['Clientes fondeados',fmt(n.unique_clients_funded)],
+         ['Total operaciones CR',fmt(n.total_cr_count)],
+         ['Total fondeado',fmtUSD(n.total_cr_usd)],
+         ['Promedio por operación',fmtUSD(n.avg_cr_usd)],
+         ['Primer CR detectado',esc(n.first_cr_date||'—')],
+         ['Último CR detectado',esc(n.last_cr_date||'—')],
+      ].map(([l,v])=>`<div class="detail-row"><span class="detail-label">${l}</span><span class="detail-value">${v}</span></div>`).join('')}
+    </div>
+    <div class="detail-section">
+      <div class="detail-section-title">Señal relacionada</div>
+      <div class="methodology-box">Una misma persona externa (DNI) aparece como remitente en cash calls tipo CR de ${n.unique_clients_funded} clientes distintos con exposición AV. Esto sugiere coordinación deliberada para fondear múltiples cuentas desde una fuente común — patrón típico de red de mulas financieras.</div>
+    </div>`);
+}
+
+// ═══════════════════════════════════════════════════════════
+// SORT & PAGINATION
+// ═══════════════════════════════════════════════════════════
 function sortTable(tbl, col) {
-  const s = STATE[tbl];
+  const s=STATE[tbl];
   if(s.sortCol===col) s.sortDir*=-1; else {s.sortCol=col;s.sortDir=1;}
+  const keys={alerts:['signal_code','risk_level','alert_date','customer_ref',null,null],
+               clients:['customer_ref','country_code','segmentation','risk_level','seniority_band','total_av_usd','total_av_operations','composite_score']};
+  const key=keys[tbl]?.[col];
+  if(!key) return;
   s.sorted.sort((a,b)=>{
-    const vals={alerts:['signal_code','risk_level','alert_date','customer_ref'],
-                clients:['customer_ref','country_code','segmentation','risk_level','seniority_band','total_av_usd','total_av_operations','composite_score']};
-    const key=vals[tbl]?.[col];
-    const va=a[key]??'', vb=b[key]??'';
-    const n=Number(va), m=Number(vb);
-    const res=(!isNaN(n)&&!isNaN(m))?n-m:String(va).localeCompare(String(vb));
-    return res*s.sortDir;
+    const va=a[key]??'',vb=b[key]??'';
+    const n=Number(va),m=Number(vb);
+    return ((!isNaN(n)&&!isNaN(m))?n-m:String(va).localeCompare(String(vb)))*s.sortDir;
   });
   s.page=1;
-  if(tbl==='alerts') renderAlertsPage();
-  else renderClientsPage();
-  // Update th classes
+  if(tbl==='alerts') renderAlertsPage(); else renderClientsPage();
   document.querySelectorAll(`#table-${tbl==='alerts'?'alerts':'clients'} th`).forEach((th,i)=>{
     th.classList.remove('sorted-asc','sorted-desc');
     if(i===col) th.classList.add(s.sortDir===1?'sorted-asc':'sorted-desc');
@@ -1137,42 +1137,229 @@ function sortTable(tbl, col) {
 }
 
 function renderPager(id, total, page, onPage) {
-  const pages = Math.ceil(total/PAGE_SIZE);
+  const pages=Math.ceil(total/PAGE_SIZE);
   if(pages<=1){document.getElementById(id).innerHTML='';return;}
-  document.getElementById(id).innerHTML = `
+  document.getElementById(id).innerHTML=`
     <button onclick="(${onPage})(${page-1})" ${page<=1?'disabled':''}>←</button>
     <span class="page-info">Página ${page} de ${pages}</span>
     <button onclick="(${onPage})(${page+1})" ${page>=pages?'disabled':''}>→</button>`;
 }
 
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
+// SQL VIEWER
+// ═══════════════════════════════════════════════════════════
+const SQL_MODELS=[
+  {name:'stg_transactions',layer:'Staging',desc:'Transacciones exitosas con flag de exposición AV',sql:`-- Transacciones con exposición AV (Bridge / moneda crypto)
+with source as (
+    select * from product_gateway.transaction
+    where start_date >= '2021-01-01'
+      and upper(tx_status) = 'TRANSFERENCIA_EXITOSA'
+)
+select
+    t.transaction_id::varchar(100)  as transaction_id,
+    t.customer_id,
+    t.start_date,
+    t.payment_method,
+    coalesce(t.destiny_amount_usd, t.origin_amount_usd) as amount_usd,
+    case
+        when lower(t.payment_method)   ilike '%bridge%' then true
+        when lower(t.origin_currency)  in (select lower(currency_code) from av_currencies) then true
+        when lower(t.destiny_currency) in (select lower(currency_code) from av_currencies) then true
+        else false
+    end as is_av_exposed
+from source t`},
+  {name:'stg_cash_calls',layer:'Staging',desc:'Cash calls (fondeos/retiros) con flag de exposición AV',sql:`-- Cash calls pagados con exposición AV
+with source as (
+    select * from treasury.cash_call
+    where creation_date >= '2021-01-01'
+      and lower(status) = 'paid'
+)
+select
+    c.cash_call_id::varchar(100)  as cash_call_id,
+    c.customer_id,
+    c.creation_date,
+    upper(c.type)                 as type,   -- CR = fondeo, DR = retiro
+    c.currency_code,
+    c.persona_dni,                            -- DNI persona externa que fondea
+    c.remitter_dni,
+    coalesce(c.origin_amount_usd, c.destiny_amount_usd) as amount_usd,
+    case
+        when lower(c.payment_method) ilike '%bridge%' then true
+        when lower(c.currency_code) in (select lower(currency_code) from av_currencies) then true
+        else false
+    end as is_av_exposed
+from source c`},
+  {name:'int_av_exposed_clients',layer:'Intermediate',desc:'Universo de clientes con cualquier exposición AV (ephemeral CTE)',sql:`-- Une transacciones y cash calls, calcula métricas por cliente
+with trx_exposed as (
+    select customer_id::varchar(100), 'TRANSACTION'::varchar(30) as source,
+           start_date::timestamp as operation_date,
+           amount_usd::decimal(18,4), null::varchar(10) as type
+    from stg_transactions where is_av_exposed = true
+),
+cc_exposed as (
+    select customer_id::varchar(100), 'CASH_CALL'::varchar(30) as source,
+           creation_date::timestamp as operation_date,
+           amount_usd::decimal(18,4), type::varchar(10)
+    from stg_cash_calls where is_av_exposed = true
+)
+select
+    customer_id,
+    count(*)                    as total_av_operations,
+    sum(amount_usd)             as total_av_usd,
+    datediff(day, min(operation_date), max(operation_date)) as active_days_av,
+    sum(case when source='CASH_CALL' and type='CR' then amount_usd else 0 end) as total_cr_usd,
+    sum(case when source='CASH_CALL' and type='DR' then amount_usd else 0 end) as total_dr_usd
+from (select * from trx_exposed union all select * from cc_exposed)
+group by customer_id`},
+  {name:'mart_av_client_profile',layer:'Mart',desc:'Perfil completo con scoring dimensional (1-4) por cliente AV',sql:`-- Score = volumen + antigüedad + velocidad CR→DR
+select
+    c.customer_id, c.country_code, c.segmentation,
+    c.risk_level, c.customer_age_days, c.seniority_band,
+    e.total_av_usd, e.total_av_operations,
+    f.hours_last_cr_to_last_dr,
+
+    case when e.total_av_usd > 100000 then 4
+         when e.total_av_usd > 50000  then 3
+         when e.total_av_usd > 10000  then 2
+         else 1 end as volume_score,
+
+    case when c.customer_age_days < 30  then 4
+         when c.customer_age_days < 90  then 3
+         when c.customer_age_days < 180 then 2
+         else 1 end as seniority_score,
+
+    case when f.hours_last_cr_to_last_dr between 0 and 6  then 4
+         when f.hours_last_cr_to_last_dr between 0 and 24 then 3
+         when f.hours_last_cr_to_last_dr between 0 and 72 then 2
+         else 1 end as velocity_score
+
+from int_av_exposed_clients e
+inner join stg_customers    c on e.customer_id = c.customer_id
+left join  int_av_cr_dr_matched f on e.customer_id = f.customer_id`},
+  {name:'mart_av_alerts',layer:'Mart',desc:'28K+ alertas: 10 señales AML aplicadas sobre todos los clientes expuestos',sql:`-- AV-01: CR crypto + DR en < 24h
+with av01 as (
+    select customer_id::varchar(100), 'AV-01'::varchar(10) as signal_code,
+           'CR crypto/stablecoin seguido de DR en menos de 24 horas' as signal_description,
+           'HIGH'::varchar(20) as risk_level, last_cr_date::timestamp as alert_date,
+           hours_last_cr_to_last_dr::varchar(50) as signal_value
+    from int_av_cr_dr_matched
+    where hours_last_cr_to_last_dr between 0 and 24
+),
+-- AV-02: Fraccionamiento ≥3 CR < USD 1.000
+-- AV-03: Red mulas (DNI externo → ≥2 clientes)
+-- AV-04 a AV-10: ver github.com/BMackenna-G66/av-kyt-sfc
+all_alerts as (
+    select * from av01 union all select * from av02
+    union all select * from av03 -- ... av10
+)
+select customer_id, signal_code, signal_description,
+       risk_level, alert_date, signal_value,
+       current_timestamp as dbt_loaded_at
+from all_alerts`},
+  {name:'mart_av_flows',layer:'Mart',desc:'Serie mensual de volumen y operaciones por cliente y tipo de fuente',sql:`-- Flujo mensual por tipo de operación AV
+with trx_monthly as (
+    select customer_id::varchar(100),
+           to_char(start_date, 'YYYY-MM') as period_month,
+           'TRANSACTION'::varchar(40)     as source,
+           count(*)::bigint               as op_count,
+           sum(amount_usd::decimal(18,4)) as total_usd
+    from stg_transactions where is_av_exposed = true
+    group by customer_id, to_char(start_date, 'YYYY-MM')
+),
+cc_monthly as (
+    select customer_id::varchar(100),
+           to_char(creation_date, 'YYYY-MM')       as period_month,
+           ('CASH_CALL_' || type)::varchar(40)      as source,
+           count(*)::bigint                         as op_count,
+           sum(amount_usd::decimal(18,4))           as total_usd
+    from stg_cash_calls where is_av_exposed = true
+    group by customer_id, to_char(creation_date, 'YYYY-MM'), type
+)
+select * from trx_monthly union all select * from cc_monthly`},
+  {name:'mart_av_network',layer:'Mart',desc:'Personas externas que fondean ≥2 clientes AV — base de AV-03',sql:`-- DNI externo aparece en ≥2 clientes AV
+with cr_with_external as (
+    select customer_id,
+           regexp_replace(persona_dni, '[^0-9]', '') as externo_dni_clean,
+           amount_usd, creation_date
+    from stg_cash_calls
+    where type = 'CR' and is_av_exposed = true
+      and persona_dni is not null
+)
+select
+    externo_dni_clean,
+    count(distinct customer_id)      as unique_clients_funded,
+    count(*)                         as total_cr_count,
+    sum(amount_usd)                  as total_cr_usd,
+    case when count(distinct customer_id) >= 10 then 'CRITICAL'
+         when count(distinct customer_id) >= 5  then 'HIGH'
+         else 'MEDIUM' end           as network_risk_level
+from cr_with_external
+group by externo_dni_clean
+having count(distinct customer_id) >= 2`},
+];
+
+const LAYER_C={Staging:'var(--muted)',Intermediate:'var(--yellow)',Mart:'var(--green)'};
+
+function renderSQL() {
+  document.getElementById('sql-nav').innerHTML = SQL_MODELS.map((m,i)=>`
+    <div class="sql-card" onclick="showSQL(${i})" id="sqlcard-${i}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <div class="sql-card-name">${m.name}</div>
+        <span style="font-size:.68rem;color:${LAYER_C[m.layer]||'var(--muted)'}">▶ ${m.layer}</span>
+      </div>
+      <div class="sql-card-desc">${m.desc}</div>
+    </div>`).join('');
+  showSQL(0);
+}
+
+function showSQL(idx) {
+  document.querySelectorAll('.sql-card').forEach((c,i)=>{c.style.borderColor=i===idx?'var(--accent)':'';});
+  const m=SQL_MODELS[idx];
+  const hl=sql=>sql
+    .replace(/--[^\n]*/g,s=>`<span class="sql-cm">${s}</span>`)
+    .replace(/\b(select|from|where|join|inner|left|on|group\s+by|order\s+by|having|with|union\s+all|union|as|and|or|not|null|true|false|case|when|then|else|end|count|sum|avg|min|max|coalesce|round|datediff|regexp_replace|to_char|upper|lower|trim|ilike|distinct|create|table|view|drop|if)\b/gi,s=>`<span class="sql-kw">${s}</span>`)
+    .replace(/'[^']*'/g,s=>`<span class="sql-str">${s}</span>`)
+    .replace(/\b(\d+(?:\.\d+)?)\b/g,s=>`<span class="sql-num">${s}</span>`);
+  document.getElementById('sql-viewer-container').innerHTML=`
+    <div class="sql-viewer">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+        <div><strong>${m.name}</strong> <span style="margin-left:.75rem;font-size:.72rem;color:${LAYER_C[m.layer]}">${m.layer}</span></div>
+        <a href="https://github.com/BMackenna-G66/av-kyt-sfc/tree/main/models" target="_blank" style="font-size:.78rem">Ver código completo →</a>
+      </div>
+      <p style="font-size:.8rem;color:var(--muted);margin-bottom:1rem">${m.desc}</p>
+      <pre>${hl(esc(m.sql.trim()))}</pre>
+    </div>`;
+}
+
+// ═══════════════════════════════════════════════════════════
 // BOOT
-// ═══════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════
 async function init() {
   try {
     const resp = await fetch('data/av_kyt.json');
     if(!resp.ok) throw new Error('not found');
     ALL = await resp.json();
 
-    document.getElementById('loading').style.display='none';
-    document.getElementById('main-content').style.display='block';
+    document.getElementById('loading').style.display    = 'none';
+    document.getElementById('main-content').style.display = 'block';
 
     const ts = ALL.exported_at
       ? new Date(ALL.exported_at).toLocaleDateString('es-CO',{day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'})
       : '—';
-    document.getElementById('last-updated').textContent=ts;
+    document.getElementById('last-updated').textContent = ts;
 
-    renderKPIs(ALL.kpis);
+    renderKPIs(ALL.kpis, ALL.monthly_kpis||[]);
+    renderPeriodComparison(ALL.monthly_kpis||[]);
     renderOverviewCharts(ALL);
     initAlerts(ALL);
-    renderFlows(ALL.flows_monthly);
+    renderFlows(ALL.flows_monthly||[]);
     initClients(ALL);
-    renderNetwork(ALL.network);
+    renderNetworkGraph(ALL.network_graph||[], ALL.network||[]);
     renderSQL();
 
   } catch(e) {
-    document.getElementById('loading').style.display='none';
-    document.getElementById('error-msg').style.display='block';
+    document.getElementById('loading').style.display   = 'none';
+    document.getElementById('error-msg').style.display = 'block';
   }
 }
 init();
