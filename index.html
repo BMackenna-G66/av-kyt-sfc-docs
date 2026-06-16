@@ -250,6 +250,7 @@
   <div class="tab" data-tab="flows">💸 Flujos</div>
   <div class="tab" data-tab="clients">👤 Clientes</div>
   <div class="tab" data-tab="network">🕸️ Redes</div>
+  <div class="tab" data-tab="profiles">👥 Perfiles</div>
   <div class="tab" data-tab="universe">🌍 Universo SFC</div>
   <div class="tab" data-tab="segments">📊 Segmentos</div>
   <div class="tab" data-tab="typologies">🔮 Tipologías</div>
@@ -461,6 +462,66 @@
         <tbody id="network-table-body"></tbody>
       </table>
     </div>
+  </div>
+
+  <!-- ══ PERFILES DE CLIENTES ══════════════════════════════════════════ -->
+  <div class="section" id="sec-profiles">
+    <div class="section-title">Perfiles de clientes con exposición AV</div>
+    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.5rem">
+      Caracterización sociodemográfica del segmento de clientes que opera con activos virtuales en Global66.
+    </p>
+
+    <!-- KPI summary -->
+    <div class="kpi-grid" id="profiles-kpis"></div>
+
+    <!-- Fila 1: País y Nacionalidad -->
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">País de residencia</div>
+        <div class="chart-wrap tall"><canvas id="chart-prof-country"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Nacionalidad</div>
+        <div class="chart-wrap tall"><canvas id="chart-prof-nationality"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Fila 2: Edad y Antigüedad -->
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">Rango etario</div>
+        <div class="chart-wrap"><canvas id="chart-prof-age"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Antigüedad en Global66</div>
+        <div class="chart-wrap"><canvas id="chart-prof-seniority"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Fila 3: Actividad económica y Segmento -->
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">Actividad económica declarada (top 15)</div>
+        <div class="chart-wrap" style="height:340px"><canvas id="chart-prof-activity"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Segmento comercial</div>
+        <div class="chart-wrap"><canvas id="chart-prof-segment"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Fila 4: KYC, Compliance, Riesgo -->
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">Frecuencia de operaciones AV</div>
+        <div class="chart-wrap"><canvas id="chart-prof-kyc"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Estado Compliance</div>
+        <div class="chart-wrap"><canvas id="chart-prof-compliance"></canvas></div>
+      </div>
+    </div>
+
   </div>
 
   <!-- ══ UNIVERSO SFC ══════════════════════════════════════════════════ -->
@@ -1450,6 +1511,93 @@ function showSQL(idx) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// PERFILES DE CLIENTES
+// ═══════════════════════════════════════════════════════════
+function renderClientProfiles(p) {
+  if(!p) return;
+  const s = (p.summary||[])[0]||{};
+
+  // KPIs
+  document.getElementById('profiles-kpis').innerHTML=`
+    <div class="kpi-card accent">
+      <div class="kpi-label">Clientes AV analizados</div>
+      <div class="kpi-value">${fmt(s.total_av_clients)}</div>
+      <div class="kpi-sub">Universo con exposición AV</div>
+    </div>
+    <div class="kpi-card yellow">
+      <div class="kpi-label">Edad promedio</div>
+      <div class="kpi-value">${s.avg_age||'—'}</div>
+      <div class="kpi-sub">Años</div>
+    </div>
+    <div class="kpi-card green">
+      <div class="kpi-label">Países distintos</div>
+      <div class="kpi-value">${fmt(s.unique_countries)}</div>
+      <div class="kpi-sub">De residencia</div>
+    </div>
+    <div class="kpi-card red">
+      <div class="kpi-label">Clientes nuevos</div>
+      <div class="kpi-value">${fmt(s.new_clients)}</div>
+      <div class="kpi-sub">Menos de 6 meses en G66</div>
+    </div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">Monto prom. por cliente</div>
+      <div class="kpi-value">$${fmtK(+(s.avg_usd_per_client)||0)}</div>
+      <div class="kpi-sub">USD en operaciones AV</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Ops. prom. por cliente</div>
+      <div class="kpi-value">${s.avg_ops_per_client||'—'}</div>
+      <div class="kpi-sub">Operaciones AV promedio</div>
+    </div>`;
+
+  const PALETTE = ['#388bfd','#3fb950','#d29922','#f85149','#bc8cff','#db6d28','#58a6ff','#56d364','#e3b341','#ff7b72','#d2a8ff','#ffa657','#79c0ff','#7ee787','#f8e3a1'];
+
+  function hBar(canvasId, data, top=15) {
+    const rows = (data||[]).slice(0,top);
+    new Chart(document.getElementById(canvasId),{
+      type:'bar',
+      data:{
+        labels: rows.map(r=>r.label||'—'),
+        datasets:[{data:rows.map(r=>+r.total), backgroundColor:PALETTE, borderWidth:0}]
+      },
+      options:{
+        indexAxis:'y', responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' clientes'}}},
+        scales:{
+          x:{ticks:{color:'#8b949e',callback:v=>fmt(v)}, grid:{color:'#21262d'}},
+          y:{ticks:{color:'#e6edf3', font:{size:11}}}
+        }
+      }
+    });
+  }
+
+  function donut(canvasId, data) {
+    const rows = (data||[]).slice(0,10);
+    new Chart(document.getElementById(canvasId),{
+      type:'doughnut',
+      data:{
+        labels: rows.map(r=>r.label||'—'),
+        datasets:[{data:rows.map(r=>+r.total), backgroundColor:PALETTE, borderWidth:0}]
+      },
+      options:{
+        responsive:true, maintainAspectRatio:false,
+        plugins:{legend:{position:'right', labels:{color:'#8b949e', font:{size:10}, boxWidth:12}},
+          tooltip:{callbacks:{label:ctx=>' '+fmt(ctx.raw)+' clientes'}}}
+      }
+    });
+  }
+
+  hBar('chart-prof-country',    p.by_country,    15);
+  hBar('chart-prof-nationality',p.by_nationality, 15);
+  donut('chart-prof-age',       p.by_age);
+  donut('chart-prof-seniority', p.by_seniority);
+  hBar('chart-prof-activity',   p.by_activity,   15);
+  donut('chart-prof-segment',   p.by_segment);
+  donut('chart-prof-kyc',       p.by_kyc);
+  donut('chart-prof-compliance',p.by_compliance);
+}
+
+// ═══════════════════════════════════════════════════════════
 // UNIVERSE — Actividad 1 SFC
 // ═══════════════════════════════════════════════════════════
 function renderUniverse(universe) {
@@ -1657,6 +1805,7 @@ async function init() {
     renderFlows(ALL.flows_monthly||[]);
     initClients(ALL);
     renderNetworkGraph(ALL.network_graph||[], ALL.network||[]);
+    renderClientProfiles(ALL.client_profiles||{});
     renderUniverse(ALL.universe||[]);
     renderSegments(ALL.segment_stats||[]);
     renderTypologies(ALL.typologies||[], ALL.typologies_summary||{});
