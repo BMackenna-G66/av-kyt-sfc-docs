@@ -250,6 +250,9 @@
   <div class="tab" data-tab="flows">💸 Flujos</div>
   <div class="tab" data-tab="clients">👤 Clientes</div>
   <div class="tab" data-tab="network">🕸️ Redes</div>
+  <div class="tab" data-tab="universe">🌍 Universo SFC</div>
+  <div class="tab" data-tab="segments">📊 Segmentos</div>
+  <div class="tab" data-tab="typologies">🔮 Tipologías</div>
   <div class="tab" data-tab="sql">🔍 Modelo SQL</div>
 </div>
 
@@ -457,6 +460,121 @@
         </tr></thead>
         <tbody id="network-table-body"></tbody>
       </table>
+    </div>
+  </div>
+
+  <!-- ══ UNIVERSO SFC ══════════════════════════════════════════════════ -->
+  <div class="section" id="sec-universe">
+    <div class="section-title">Universo de clientes — Requerimiento SFC Actividad 1</div>
+    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.5rem">
+      Alcance: clientes con al menos una operación en los últimos 12 meses. Se identifica qué proporción tiene exposición a activos virtuales.
+    </p>
+    <div class="kpi-grid" id="universe-kpis"></div>
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">Exposición AV por tipo de cliente</div>
+        <div class="chart-wrap"><canvas id="chart-universe-donut"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Clientes activos vs. expuestos AV</div>
+        <div class="chart-wrap"><canvas id="chart-universe-bar"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-top:1.5rem">
+      <div class="chart-title">Detalle por tipo de persona y país</div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="universe-table">
+          <thead><tr>
+            <th>Tipo cliente</th><th class="right">País</th>
+            <th class="right">Activos 12m</th><th class="right">Expuestos AV</th>
+            <th class="right">% Exposición</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SEGMENTOS ═════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-segments">
+    <div class="section-title">Estadística descriptiva por segmento — Requerimiento SFC Actividad 2</div>
+    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.5rem">
+      Promedios, frecuencias y ratios de exposición AV por segmento comercial. Permite identificar qué perfiles concentran más riesgo.
+    </p>
+    <div class="charts-grid">
+      <div class="chart-card">
+        <div class="chart-title">% Exposición AV por segmento</div>
+        <div class="chart-wrap tall"><canvas id="chart-seg-exposure"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Volumen total AV por segmento (USD)</div>
+        <div class="chart-wrap tall"><canvas id="chart-seg-volume"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-top:1.5rem">
+      <div class="chart-title">Tabla de estadísticas por segmento</div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="segments-table">
+          <thead><tr>
+            <th>Segmento</th><th>Tipo</th>
+            <th class="right">Total clientes</th><th class="right">Expuestos AV</th>
+            <th class="right">% Exposición</th><th class="right">Monto prom. (USD)</th>
+            <th class="right">Ops prom.</th><th class="right">Señal top</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TIPOLOGÍAS ════════════════════════════════════════════════════ -->
+  <div class="section" id="sec-typologies">
+    <div class="section-title">Tipologías LA/FT — Requerimiento SFC Actividad 3</div>
+    <p style="font-size:.83rem;color:var(--muted);margin-bottom:1.5rem">
+      Conductas delictivas modeladas con evidencia del modelo. Cada cliente AV expuesto es clasificado en hasta 5 tipologías.
+    </p>
+    <div class="kpi-grid" id="typologies-kpis"></div>
+    <div class="charts-grid" style="margin-top:1.5rem">
+      <div class="chart-card">
+        <div class="chart-title">Distribución por tipología primaria</div>
+        <div class="chart-wrap"><canvas id="chart-tip-type"></canvas></div>
+      </div>
+      <div class="chart-card">
+        <div class="chart-title">Riesgo compuesto</div>
+        <div class="chart-wrap"><canvas id="chart-tip-risk"></canvas></div>
+      </div>
+    </div>
+    <div class="chart-card" style="margin-top:1.5rem">
+      <div class="chart-title">Detalle de clientes por tipología</div>
+      <div class="filter-bar" style="margin-bottom:1rem">
+        <input type="text" id="tip-search" placeholder="Buscar cliente...">
+        <select id="tip-filter-type">
+          <option value="">Todas las tipologías</option>
+          <option value="TIP-01">TIP-01 Fraccionamiento</option>
+          <option value="TIP-02">TIP-02 Mula Financiera</option>
+          <option value="TIP-03">TIP-03 Layering Cripto</option>
+          <option value="TIP-04">TIP-04 Acumulación Progresiva</option>
+          <option value="TIP-05">TIP-05 Empresa Fachada</option>
+        </select>
+        <select id="tip-filter-risk">
+          <option value="">Todos los riesgos</option>
+          <option value="CRITICAL">CRITICAL</option>
+          <option value="HIGH">HIGH</option>
+          <option value="MEDIUM">MEDIUM</option>
+          <option value="LOW">LOW</option>
+        </select>
+        <span class="results-count" id="tip-count"></span>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="data-table" id="typologies-table">
+          <thead><tr>
+            <th>Cliente</th><th>Tipo</th><th>Segmento</th><th>País</th>
+            <th>Tipología primaria</th><th class="right">N° tipologías</th>
+            <th class="right">Alertas</th><th>Riesgo</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -1332,6 +1450,190 @@ function showSQL(idx) {
 }
 
 // ═══════════════════════════════════════════════════════════
+// UNIVERSE — Actividad 1 SFC
+// ═══════════════════════════════════════════════════════════
+function renderUniverse(universe) {
+  if(!universe||!universe.length){
+    document.getElementById('universe-kpis').innerHTML='<p style="color:var(--muted);font-size:.83rem">Sin datos de universo.</p>';
+    return;
+  }
+  const totalActive = universe.reduce((s,r)=>s+(+r.total_active_clients_12m||0),0);
+  const totalExposed = universe.reduce((s,r)=>s+(+r.total_av_exposed||0),0);
+  const pct = totalActive ? (totalExposed/totalActive*100).toFixed(1) : 0;
+  const natRows = universe.filter(r=>r.persona_type==='PERSONA_NATURAL');
+  const jurRows = universe.filter(r=>r.persona_type==='PERSONA_JURIDICA');
+  const natExp = natRows.reduce((s,r)=>s+(+r.total_av_exposed||0),0);
+  const jurExp = jurRows.reduce((s,r)=>s+(+r.total_av_exposed||0),0);
+
+  document.getElementById('universe-kpis').innerHTML=`
+    <div class="kpi-card accent"><div class="kpi-label">Clientes activos 12m</div><div class="kpi-value">${fmt(totalActive)}</div><div class="kpi-sub">Universo base SFC</div></div>
+    <div class="kpi-card red"><div class="kpi-label">Expuestos AV</div><div class="kpi-value">${fmt(totalExposed)}</div><div class="kpi-sub">Con operaciones AV</div></div>
+    <div class="kpi-card yellow"><div class="kpi-label">% Exposición AV</div><div class="kpi-value">${pct}%</div><div class="kpi-sub">Del universo activo</div></div>
+    <div class="kpi-card green"><div class="kpi-label">Personas naturales AV</div><div class="kpi-value">${fmt(natExp)}</div><div class="kpi-sub">B2C expuestos</div></div>
+    <div class="kpi-card purple"><div class="kpi-label">Personas jurídicas AV</div><div class="kpi-value">${fmt(jurExp)}</div><div class="kpi-sub">B2B expuestos</div></div>`;
+
+  // Donut: expuestos vs no expuestos
+  const notExp = totalActive - totalExposed;
+  new Chart(document.getElementById('chart-universe-donut'),{
+    type:'doughnut',
+    data:{labels:['Sin exposición AV','Con exposición AV'],
+      datasets:[{data:[notExp,totalExposed],
+        backgroundColor:['#30363d','#f85149'],borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{color:'#8b949e',font:{size:11}}}}}
+  });
+
+  // Bar: by persona_type
+  const types=['PERSONA_NATURAL','PERSONA_JURIDICA'];
+  const actByType = types.map(t=>universe.filter(r=>r.persona_type===t).reduce((s,r)=>s+(+r.total_active_clients_12m||0),0));
+  const expByType = types.map(t=>universe.filter(r=>r.persona_type===t).reduce((s,r)=>s+(+r.total_av_exposed||0),0));
+  new Chart(document.getElementById('chart-universe-bar'),{
+    type:'bar',
+    data:{labels:['Persona Natural','Persona Jurídica'],
+      datasets:[
+        {label:'Activos 12m',data:actByType,backgroundColor:'#388bfd88'},
+        {label:'Expuestos AV',data:expByType,backgroundColor:'#f8514988'}
+      ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{labels:{color:'#8b949e',font:{size:11}}}},
+      scales:{x:{ticks:{color:'#8b949e'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+  });
+
+  // Table
+  const tbody = document.querySelector('#universe-table tbody');
+  tbody.innerHTML = universe.map(r=>`<tr>
+    <td>${r.persona_type||'—'}</td>
+    <td class="right">${r.country_code||'—'}</td>
+    <td class="right">${fmt(r.total_active_clients_12m)}</td>
+    <td class="right">${fmt(r.total_av_exposed)}</td>
+    <td class="right"><span class="badge ${+r.pct_av_exposed>10?'badge-red':+r.pct_av_exposed>5?'badge-yellow':'badge-green'}">${(+r.pct_av_exposed||0).toFixed(1)}%</span></td>
+  </tr>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+// SEGMENTS — Actividad 2 SFC
+// ═══════════════════════════════════════════════════════════
+function renderSegments(segStats) {
+  if(!segStats||!segStats.length){
+    document.getElementById('segments-table').querySelector('tbody').innerHTML='<tr><td colspan="8" style="color:var(--muted);text-align:center;padding:2rem">Sin datos de segmentos.</td></tr>';
+    return;
+  }
+  const labels = segStats.map(r=>r.commercial_segment||'—');
+  const pcts   = segStats.map(r=>+(r.pct_av_exposure)||0);
+  const vols   = segStats.map(r=>+(r.total_av_usd)||0);
+  const colors = ['#388bfd','#3fb950','#d29922','#f85149','#bc8cff','#db6d28'];
+
+  new Chart(document.getElementById('chart-seg-exposure'),{
+    type:'bar',
+    data:{labels,datasets:[{label:'% Exposición AV',data:pcts,backgroundColor:colors}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:'#8b949e',callback:v=>v+'%'},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'}}}}
+  });
+
+  new Chart(document.getElementById('chart-seg-volume'),{
+    type:'bar',
+    data:{labels,datasets:[{label:'Total AV USD',data:vols,backgroundColor:colors}]},
+    options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:'#8b949e',callback:v=>'$'+fmtK(v)},grid:{color:'#21262d'}},y:{ticks:{color:'#8b949e'}}}}
+  });
+
+  const tbody = document.querySelector('#segments-table tbody');
+  tbody.innerHTML = segStats.map(r=>`<tr>
+    <td><strong>${r.commercial_segment||'—'}</strong></td>
+    <td>${r.persona_type||'—'}</td>
+    <td class="right">${fmt(r.total_clients_in_segment)}</td>
+    <td class="right">${fmt(r.av_exposed_clients)}</td>
+    <td class="right"><span class="badge ${+r.pct_av_exposure>10?'badge-red':+r.pct_av_exposure>5?'badge-yellow':'badge-green'}">${(+(r.pct_av_exposure)||0).toFixed(1)}%</span></td>
+    <td class="right">$${fmtK(+(r.avg_av_usd_exposed)||0)}</td>
+    <td class="right">${(+(r.avg_operations_exposed)||0).toFixed(1)}</td>
+    <td><span class="badge badge-blue">${r.top_signal_code||'—'}</span></td>
+  </tr>`).join('');
+}
+
+// ═══════════════════════════════════════════════════════════
+// TYPOLOGIES — Actividad 3 SFC
+// ═══════════════════════════════════════════════════════════
+let TIP_ALL = [];
+function renderTypologies(typologies, summary) {
+  TIP_ALL = typologies || [];
+  if(!summary) return;
+
+  // KPIs
+  const multi = summary.multi_typology?.[0]?.clients_with_multiple_typologies || 0;
+  const totalTip = TIP_ALL.length;
+  const critCount = TIP_ALL.filter(r=>r.composite_risk_level==='CRITICAL').length;
+  const highCount = TIP_ALL.filter(r=>r.composite_risk_level==='HIGH').length;
+  document.getElementById('typologies-kpis').innerHTML=`
+    <div class="kpi-card accent"><div class="kpi-label">Clientes con tipología</div><div class="kpi-value">${fmt(totalTip)}</div><div class="kpi-sub">Con exposición AV clasificada</div></div>
+    <div class="kpi-card red"><div class="kpi-label">Riesgo CRITICAL</div><div class="kpi-value">${fmt(critCount)}</div><div class="kpi-sub">Máxima prioridad</div></div>
+    <div class="kpi-card yellow"><div class="kpi-label">Riesgo HIGH</div><div class="kpi-value">${fmt(highCount)}</div><div class="kpi-sub">Alta prioridad</div></div>
+    <div class="kpi-card purple"><div class="kpi-label">Multi-tipología</div><div class="kpi-value">${fmt(multi)}</div><div class="kpi-sub">≥2 tipologías activas</div></div>`;
+
+  // Charts
+  const byType = summary.by_type || [];
+  const TIP_COLORS={'TIP-01 Fraccionamiento':'#d29922','TIP-02 Mula Financiera':'#f85149','TIP-03 Layering Cripto':'#bc8cff','TIP-04 Acumulación Progresiva':'#388bfd','TIP-05 Empresa Fachada':'#db6d28','SIN TIPOLOGÍA DEFINIDA':'#30363d'};
+  new Chart(document.getElementById('chart-tip-type'),{
+    type:'doughnut',
+    data:{labels:byType.map(r=>r.primary_typology),
+      datasets:[{data:byType.map(r=>+r.total_clients),
+        backgroundColor:byType.map(r=>TIP_COLORS[r.primary_typology]||'#8b949e'),borderWidth:0}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{color:'#8b949e',font:{size:10},boxWidth:12}}}}
+  });
+
+  const byRisk = summary.by_risk || [];
+  const RISK_C={'CRITICAL':'#f85149','HIGH':'#d29922','MEDIUM':'#388bfd','LOW':'#3fb950'};
+  new Chart(document.getElementById('chart-tip-risk'),{
+    type:'bar',
+    data:{labels:byRisk.map(r=>r.composite_risk_level),
+      datasets:[{label:'Clientes',data:byRisk.map(r=>+r.total_clients),
+        backgroundColor:byRisk.map(r=>RISK_C[r.composite_risk_level]||'#8b949e')}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{ticks:{color:'#8b949e'}},y:{ticks:{color:'#8b949e'},grid:{color:'#21262d'}}}}
+  });
+
+  renderTipTable();
+
+  document.getElementById('tip-search').addEventListener('input', renderTipTable);
+  document.getElementById('tip-filter-type').addEventListener('change', renderTipTable);
+  document.getElementById('tip-filter-risk').addEventListener('change', renderTipTable);
+}
+
+function renderTipTable() {
+  const search = document.getElementById('tip-search').value.toLowerCase();
+  const fType  = document.getElementById('tip-filter-type').value;
+  const fRisk  = document.getElementById('tip-filter-risk').value;
+  const RISK_B={'CRITICAL':'badge-red','HIGH':'badge-yellow','MEDIUM':'badge-blue','LOW':'badge-green'};
+
+  const filtered = TIP_ALL.filter(r=>{
+    if(fType && !(r.primary_typology||'').includes(fType)) return false;
+    if(fRisk && r.composite_risk_level !== fRisk) return false;
+    if(search && !(r.customer_ref||'').toLowerCase().includes(search)
+              && !(r.commercial_segment||'').toLowerCase().includes(search)
+              && !(r.country_of_residence||'').toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  document.getElementById('tip-count').textContent = `${filtered.length} clientes`;
+  document.querySelector('#typologies-table tbody').innerHTML = filtered.slice(0,200).map(r=>`<tr>
+    <td><code style="font-size:.78rem">${r.customer_ref||'—'}</code></td>
+    <td>${r.persona_type==='PERSONA_NATURAL'?'Natural':'Jurídica'}</td>
+    <td>${r.commercial_segment||'—'}</td>
+    <td>${r.country_of_residence||'—'}</td>
+    <td><span class="badge" style="background:${{'TIP-01':'#d2992233','TIP-02':'#f8514933','TIP-03':'#bc8cff33','TIP-04':'#388bfd33','TIP-05':'#db6d2833'}[((r.primary_typology||'').split(' ')[0])]||'#30363d'};color:var(--text)">${r.primary_typology||'—'}</span></td>
+    <td class="right">${r.typology_count||0}</td>
+    <td class="right">${r.total_alerts||0}</td>
+    <td><span class="badge ${RISK_B[r.composite_risk_level]||''}">${r.composite_risk_level||'—'}</span></td>
+  </tr>`).join('');
+}
+
+function fmtK(n){
+  if(n>=1000000) return (n/1000000).toFixed(1)+'M';
+  if(n>=1000) return (n/1000).toFixed(1)+'K';
+  return n.toFixed(0);
+}
+
+// ═══════════════════════════════════════════════════════════
 // BOOT
 // ═══════════════════════════════════════════════════════════
 async function init() {
@@ -1355,6 +1657,9 @@ async function init() {
     renderFlows(ALL.flows_monthly||[]);
     initClients(ALL);
     renderNetworkGraph(ALL.network_graph||[], ALL.network||[]);
+    renderUniverse(ALL.universe||[]);
+    renderSegments(ALL.segment_stats||[]);
+    renderTypologies(ALL.typologies||[], ALL.typologies_summary||{});
     renderSQL();
 
   } catch(e) {
